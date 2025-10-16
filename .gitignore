@@ -1,0 +1,40 @@
+# MkDocs build output
+site/
+
+# Python cache and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.python-version
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+
+# macOS
+.DS_Store
+
+# Node tooling (if introduced)
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Logs
+*.log
+
+# Temporary/backup files
+*.tmp
+*.bak
+.sass-cache/
+.cache/
+
+# draft folder
+draft/

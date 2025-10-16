@@ -1,0 +1,42 @@
+
+flowchart TD
+  C[Customer / Procurer]
+  V[Vendor / Provider]
+  S["System (under test)"]
+  T[(TrustCentre)]
+  R[(Rekor / TSA)]
+
+  subgraph STEP1["1) Joint Framework Alignment"]
+    F1["Select frameworks: ISO 27001, SOC 2, NIST 800-53, SLSA, AI-Assurance"]
+    F2["Map requirements → measurable controls & test criteria"]
+    C --> F1
+    V --> F1
+    F1 --> F2
+  end
+
+  subgraph STEP2["2) Author Assurance Manifest"]
+    M{{"Assurance Manifest (YAML / JSON / Markdown)"}}
+    L["Lists: required proofs · scan schedule · thresholds · responsibilities · evidence sinks"]
+    C --> M
+    V --> M
+    M --> L
+  end
+
+  subgraph STEP3["3) Seal & Register"]
+    K["Digitally sign (multi-sig: vendor + customer)\nKeys in TrustCentre KIM"]
+    A["Create provenance record (in-toto attestation)"]
+    O["Push manifest + signature to WORM-compliant OCI (TrustCentre)"]
+    X["Log transparency & timestamp entries"]
+    M --> K
+    C --> K
+    V --> K
+    K --> O
+    S --> A
+    A --> O
+    O --> T
+    T --> R
+    R --> X
+  end
+
+  STEP1 --> STEP2 --> STEP3
+

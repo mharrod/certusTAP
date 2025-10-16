@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#212248"/>
+      <stop offset="50%" stop-color="#2f3166"/>
+      <stop offset="100%" stop-color="#3e4180"/>
+    </linearGradient>
+    <radialGradient id="radialGlow" cx="75%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="rgba(156,204,102,0.45)"/>
+      <stop offset="100%" stop-color="rgba(33,34,72,0)"/>
+    </radialGradient>
+    <pattern id="gridLines" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1440" height="720" fill="url(#bgGradient)"/>
+  <rect width="1440" height="720" fill="url(#gridLines)"/>
+  <circle cx="1080" cy="160" r="420" fill="url(#radialGlow)"/>
+
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5">
+    <path d="M-120,540 Q360,360 840,520 T1800,420"/>
+    <path d="M-160,640 Q320,460 780,600 T1760,520"/>
+    <path d="M-200,420 Q300,260 760,380 T1680,320"/>
+  </g>
+
+  <g fill="rgba(156,204,102,0.35)">
+    <circle cx="220" cy="210" r="28"/>
+    <circle cx="520" cy="150" r="18"/>
+    <circle cx="880" cy="260" r="22"/>
+    <circle cx="1180" cy="420" r="30"/>
+    <circle cx="380" cy="520" r="24"/>
+  </g>
+</svg>
