@@ -1,24 +1,21 @@
 # The TAO of CertusTAP
 
-### A Semantic Framework for Machine-Verifiable Trust
+## The Vision
 
+> Certus TAO transforms assurance from a static audit into a living knowledge graph of trust where 
+> every artifact carries its own verifiable provenance and proof of integrity.
+> It forms the foundation of a machine-understandable Trust Center, where 
+> evidence, reasoning, and signatures converge to makes assurance
+> explainable and verifiable — by both humans and machines.
+> It is **A Semantic Framework for Machine-Verifiable Trust** 
 
-## Purpose
-
-The **Trust & Assurance Ontology (TAO)** defines a **unified language for trust** — enabling systems, auditors, and AI agents to *understand, reason about, and prove* that digital systems are secure, ethical, and trustworthy.
-
-> **TAO makes assurance explainable and verifiable — by both humans and machines.**
-
-It captures how trust is built, evidenced, and validated across the assurance lifecycle using cryptographic, analytical, and procedural evidence.
+:material-star-circle-outline: **Read** the [TAO specification](../ontology/tao.md)
 
 ---
 
-## Core Idea
+## The Background
 
-Modern organizations generate vast amounts of assurance evidence — vulnerability scans, AI model evaluations, provenance logs, attestations, and risk assessments.  
-However, these artifacts are often siloed, inconsistent, and lack a shared structure.
-
-**TAO’s goal** is to connect them in a semantic knowledge graph that can answer questions like:
+Modern organizations generate vast amounts of assurance evidence such as vulnerability scans, AI model evaluations, provenance logs, attestations, and risk assessments. However, these artifacts are often siloed, inconsistent, and lack a shared structure. The **Certus Trust & Assurance Ontology (TAO)** defines a **unified language for trust** that enables systems, auditors, and AI agents to *understand, reason about, and prove* that digital systems are secure, ethical, and trustworthy. It captures how trust is built, evidenced, and validated across the assurance lifecycle using cryptographic, analytical, and procedural evidence. **Certus TAO’s goal** is to connect them in a semantic knowledge graph that can answer questions like:
 
 - “What evidence supports this claim of fairness or compliance?”  
 - “Who signed this attestation and when?”  
@@ -29,7 +26,7 @@ However, these artifacts are often siloed, inconsistent, and lack a shared struc
 
 ## Ontology Summary
 
-TAO models the **entities**, **artifacts**, **evidence**, and **relationships** that define digital trust.
+Certus TAO models the **entities**, **artifacts**, **evidence**, and **relationships** that define digital trust.
 
 | Concept | Description | Example |
 |----------|--------------|----------|
@@ -50,7 +47,7 @@ Together, these form a **semantic web of assurance** — every artifact is trace
 
 ## Role Within Certus TAP
 
-| Goal | How TAO Enables It |
+| Goal | How Certus TAO Enables It |
 |------|--------------------|
 | **Continuous Assurance** | Every scan, evaluation, or attestation becomes a trust node in the ontology. |
 | **Traceability & Provenance** | Each artifact links to its producer, build, and assurance evidence. |
@@ -108,12 +105,7 @@ Together, these form a **semantic web of assurance** — every artifact is trace
 
 ---
 
-## The Vision
 
-> TAO transforms assurance from a static audit into a living knowledge graph of trust —  
-> where every artifact carries its own verifiable provenance and proof of integrity.
-
-It forms the foundation of a machine-understandable Trust Center, where evidence, reasoning, and signatures converge to power Continuous, Explainable Assurance.
 
 ---
 

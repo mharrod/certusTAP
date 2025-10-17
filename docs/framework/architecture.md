@@ -1,6 +1,6 @@
 # Architecture
 
-??? info "Click to view Architecture"
+???+ info "Click to view Architecture"
 
     ![Pipeline Diagram](../assets/images/assurance.png){ .static-diagram }
 
@@ -271,8 +271,8 @@ Acts as the “assurance intelligence” layer that can interpret evidence, gene
 
 **Backend Integration:**
 
-- Pulls from **OCI registry**, **metrics store**, and **ticket system**  
-- Uses **LLM Chain + Schema/Safety Gates** to ensure outputs remain accurate and non-speculative  
+- Pulls from OCI registry, metrics store, and ticket system  
+- Uses LLM Chain + Schema/Safety Gates to ensure outputs remain accurate and non-speculative  
 - Logs every query and response for audit traceability  
 
 ---

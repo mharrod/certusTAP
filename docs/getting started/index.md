@@ -9,5 +9,5 @@ Stay tuned for updates as Certus TAP progresses toward its first public release.
 
 :material-star-circle-outline: **Review the framework** - If you want to broaden your understanding of Certus Tap and the design decisions taken by this community, then this is a great place to start. Take a look on the [framework](../framework/index.md) section for more information about what we plan to do!
 
-:material-star-circle-outline: **Join the community** - Prefer to enage and explore CertusTAP with others?  Then join in!  Everything is public and open to friendly debate.  Take a look on the [community](../community/index.md) section for more information about how you can get engaged with this initiative.
+:material-star-circle-outline: **Join the community** - Prefer to engage and explore CertusTAP with others?  Then join in!  Everything is public and open to friendly debate.  Take a look on the [community](../community/index.md) section for more information about how you can get engaged with this initiative.
 

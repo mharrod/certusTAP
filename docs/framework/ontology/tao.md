@@ -1,4 +1,4 @@
-# TAO
+# Certus TAO
 
 Trust & Assurance Ontology (TAO)
 **Version:** 0.1  
@@ -9,8 +9,7 @@ Trust & Assurance Ontology (TAO)
 ---
 
 ## Overview
-The **Trust & Assurance Ontology (TAO)** provides a semantic framework for describing, linking, and reasoning about trust, assurance, provenance, and evidence across AI and security systems.  
-It integrates principles from **W3C PROV-O**, **ISO/IEC 15026 (Assurance Cases)**, and **NIST OSCAL** to support interoperable assurance pipelines.
+The **Trust & Assurance Ontology (TAO)** provides a semantic framework for describing, linking, and reasoning about trust, assurance, provenance, and evidence across AI and security systems.  It integrates principles from **W3C PROV-O**, **ISO/IEC 15026 (Assurance Cases)**, and **NIST OSCAL** to support interoperable assurance pipelines.
 
 ---
 

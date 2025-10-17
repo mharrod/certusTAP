@@ -4,7 +4,10 @@ A forward roadmap integrating AI reasoning, evidence immutability, and human ove
 ---
 
 ??? info "**Crawl — Exploration & Foundational R&D**"
+
+    
     **Purpose:**  
+
     Build the conceptual and technical scaffolding for the assurance ecosystem.  
     This is the R&D-heavy phase where experimentation and discovery dominate.
 
@@ -26,7 +29,9 @@ A forward roadmap integrating AI reasoning, evidence immutability, and human ove
 ---
 
 ??? info "**Walk — Structured Development & CLI-Driven Workflows**"
+
     **Purpose:**  
+
     Transform experimentation into structured, reproducible, and developer-usable assurance pipelines.
 
     **Focus Areas:**
@@ -47,7 +52,10 @@ A forward roadmap integrating AI reasoning, evidence immutability, and human ove
 ---
 
 ??? info "**Run — Defined Scope & Production-Ready Capabilities**"
+
+
     **Purpose:**  
+
     Operationalize core assurance services for controlled production deployment by SMEs and auditors.
 
     **Focus Areas:**
@@ -68,7 +76,9 @@ A forward roadmap integrating AI reasoning, evidence immutability, and human ove
 ---
 
 ??? info "**Fly — Autonomous, Trust-Centric Ecosystem**"
+   
     **Purpose:**  
+
     Deliver a production-grade Assurance Platform uniting human and AI participants in continuous, explainable trust loops.
 
     **Focus Areas:**
@@ -98,14 +108,14 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 - Preparing the transition to **Walk** with CLI and CI/CD integration groundwork
 
 
-### A0 — Foundation & Evidence Layer
+### **A — Foundation & Evidence Layer**
 
 **Goal:** Establish reproducible environments, baseline security hygiene, and immutable storage foundations.
 
 **Deliverables:**
 - LocalStack & OCI evidence registry setup  
 - Signed artifacts and attestations (Cosign)  
-- Dagger-based reproducible pipelines  
+- Tekton-based reproducible pipelines  
 - Foundational assurance manifest (YAML schema)
 
 **AI Reasoning Integration:**
@@ -113,7 +123,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **A1 — Normalization & Schema Standardization**
+### **B — Normalization & Schema Standardization**
 
 **Goal:** Build the unified schema for assurance data across scanners, enrichers, and policy gates.
 
@@ -130,7 +140,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **B1 — Contextual Enrichment & Threat Intelligence**
+### **C — Contextual Enrichment & Threat Intelligence**
 
 **Goal:** Enrich normalized findings with contextual metadata and threat intelligence feeds.
 
@@ -145,7 +155,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **B2 — Thin Ticket Sync & Human-in-the-Loop**
+### **D — Thin Ticket Sync & Human-in-the-Loop**
 
 **Goal:** Seamlessly integrate findings into existing workflow tools (Jira, ServiceNow) with lightweight sync logic.
 
@@ -161,7 +171,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **C1 — Assurance Evaluation Loop**
+### **E — Assurance Evaluation Loop**
 
 **Goal:** Establish automated assurance gates and reasoning validation feedback.
 
@@ -177,7 +187,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **C2 — Continuous Feedback & Drift Detection**
+### **F — Continuous Feedback & Drift Detection**
 
 **Goal:** Enable longitudinal tracking of reasoning and assurance quality across versions.
 
@@ -193,7 +203,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **D1 — Governance, Metrics & Reporting**
+### **G — Governance, Metrics & Reporting**
 
 **Goal:** Establish visibility and accountability across assurance operations.
 
@@ -209,7 +219,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 
 ---
 
-### **E1 — Federated Trust & Inter-Org Attestation**
+### **H — Federated Trust & Inter-Org Attestation**
 
 **Goal:** Extend assurance verification across organizations and domains.
 

@@ -2,9 +2,13 @@
 
 Although the focus of this project is on building a framework and ontological foundation, it is still important to have a prescriptive Proof of Concept (PoC) to keep us centered in reality.   This PoC demonstrates how the framework can operate end-to-end using real open-source components. It serves as both an example implementation and a validation environment for the trust and assurance lifecycle.
 
-Below is the stack we will use. It is **not the only way**, but a **reference design** that others can build upon, extend, or replace with their preferred technologies. Atmitidly, this PoC is necessarily complex and our future goal would be to build a much simpler system that anyone could deploy and use.
+Below is the stack we will use. It is **not the only way**, but a **reference design** that others can build upon, extend, or replace with their preferred technologies. Admittedly, this PoC is necessarily complex and our future goal would be to build a much simpler system that anyone could deploy and use.
 
-:material-star-circle-outline: **We strongly recommend** that you review the entire framework before delving deep into the PoC! Take a look on the [framework](../framework/index.md) section for more information about the theoretical foundations of this framework.
+:material-star-circle-outline: **We strongly recommend** that you review the entire [framework](../framework/index.md) before delving deep into the PoC!
+
+??? info "Click to view Architecture"
+
+    ![Pipeline Diagram](../assets/images/assurance.png){ .static-diagram }
 
 ---
 
@@ -12,38 +16,41 @@ Below is the stack we will use. It is **not the only way**, but a **reference de
 
 ### Infrastructure and Development Stack
 
-| **Category**                    | **Tooling / Technology**             | **Purpose**                                                                               |
-| ------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------- |
-| **Language Runtime**            | **Python 3.12**                      | Core language for PoC services, agents, and pipelines.                                    |
-| **Application Framework**       | **FastAPI**                          | Lightweight async web framework for APIs, assurance endpoints, and service orchestration. |
-| **Dependency Management**       | **Poetry**                           | Manages Python dependencies, virtualenvs, and build packaging.                            |
-| **Containerization**            | **Docker / Podman / Colima (macOS)** | Builds isolated, reproducible environments for local dev and service containers.          |
-| **Container Runtime**           | **containerd / CRI-O**               | Executes Tekton steps and workloads in Kubernetes nodes.                                  |
-| **Orchestration**               | **Kubernetes / Kind (local)**        | Schedules and manages workloads; simulates production assurance clusters locally.         |
-| **Workflow Execution**          | **Tekton Pipelines**                 | Executes multi-stage CI/CD and assurance pipelines in-cluster.                            |
-| **Image Builders (in-cluster)** | **Kaniko / Buildpacks / Buildah**    | Builds container images in Tekton without Docker daemons.                                 |
-| **Local Development**           | **Dev Containers / VS Code**         | Provides reproducible local environments using `.devcontainer.json`.                      |
-| **Registry & Artifacts**        | **Harbor (OCI, WORM mode)**          | Stores signed, immutable assurance artifacts and container images.                        |
-| **Networking / Ingress**        | **Traefik**                          | Handles routing, load-balancing, and TLS ingress for deployed services.                   |
-| **Secrets & Identity**          | **Vault / OIDC / Sigstore keyless**  | Manages credentials, keys, and signing for trust primitives.                              |
-| **Observability**               | **Prometheus + Grafana**             | Collects metrics and visualizes assurance pipeline performance.                           |
-| **Logging & Tracing**           | **Loki + OpenTelemetry**             | Centralized logs and distributed traces for debugging and audit trails.                   |
-| **Storage**                     | **MinIO / LocalStack S3**            | Provides object storage for artifacts, logs, and datasets.                                |
-| **CI/CD Integration**           | **GitHub Actions / GitLab CI/CD**    | Triggers Tekton pipelines on commits, merges, or policy updates.                          |
-| **Supply-Chain Attestation**    | **Tekton Chains + Cosign**           | Signs and records provenance for container images and assurance artifacts.                |
+| **Category**                    | Tooling / Technology             | **Purpose**                                                                          |
+| ------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------ |
+| **Language Runtime**            | Python 3.12                      | Core runtime for assurance services, pipelines, and agents.                          |
+| **Application Framework**       | FastAPI                          | Lightweight async framework for APIs and service orchestration.                      |
+| **Dependency Management**       | Poetry                           | Manages Python dependencies and virtual environments.                                |
+| **Containerization**            | Docker / Podman / Colima (macOS) | Builds isolated, reproducible dev and runtime environments.                          |
+| **Container Runtime**           | containerd / CRI-O               | Executes containers within Tekton / Kubernetes nodes.                                |
+| **Orchestration**               | Kubernetes / Kind (local)        | Manages workloads and simulates production assurance clusters locally.               |
+| **Workflow Execution**          | Tekton Pipelines                 | Executes multi-stage CI/CD and assurance workflows in-cluster.                       |
+| **Image Builders (in-cluster)** | Kaniko / Buildpacks / Buildah    | Builds container images in Tekton without requiring Docker daemons.                  |
+| **Local Development**           | Dev Containers / VS Code         | Provides reproducible, containerized developer environments.                         |
+| **GPU Cloud / Hybrid Compute**  | Runpod                           | On-demand GPU instances for large-model inference, fine-tuning, or evaluation tasks. |
+| **Registry & Artifacts**        | Harbor (OCI, WORM mode)          | Stores signed, immutable assurance artifacts and container images.                   |
+| **Networking / Ingress**        | Traefik                          | Routes and secures ingress traffic for PoC services.                                 |
+| **Secrets & Identity**          | Vault / OIDC / Sigstore keyless  | Manages credentials, identity tokens, and signing keys for assurance trust.          |
+| **Observability**               | Prometheus + Grafana             | Monitors assurance metrics, pipeline health, and runtime performance.                |
+| **Logging & Tracing**           | Loki + OpenTelemetry             | Collects logs and traces across distributed assurance components.                    |
+| **Storage**                     | MinIO / LocalStack S3            | Provides cloud-style object storage for assurance data, evidence, and logs.          |
+| **CI/CD Integration**           | GitHub Actions / GitLab CI/CD    | Triggers Tekton pipelines on commits or policy updates.                              |
+| **Supply-Chain Attestation**    | Tekton Chains + Cosign           | Signs and verifies provenance for builds and assurance artifacts.                    |
 
 ---
 
 ### AI Technology Stack 
 
-| **Layer**               | **Implementation**          | **Purpose**                                         |
-| ----------------------- | --------------------------- | --------------------------------------------------- |
-| **Model Runtime**       | Ollama (Llama 3.1 8B)       | Local inference for generation/evaluation loops.    |
-| **RAG / Orchestration** | Haystack 2 Pipelines        | Retrieval → Generation → Post-Processing workflows. |
-| **Embeddings**          | sentence-transformers       | Dense retrieval, reranking, semantic similarity.    |
-| **Data Privacy**        | Presidio                    | PII redaction on inputs/outputs in the AI pipeline. |
-| **Config & Types**      | Pydantic / JSON Schema      | Typed configs and structured I/O contracts.         |
-| **Storage**             | Local FS or S3 (LocalStack) | Persist corpora, indexes, and run artifacts.        |
+| **Layer**                          | Implementation                      | **Purpose**                                                                                    |
+| ---------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Model Runtime (Local)**          | Ollama (Llama 3.1 8B / Qwen 2.5 7B) | Local inference for reasoning and assurance generation loops.                                  |
+| **Model Runtime (Cloud / Hybrid)** | Runpod Inference Pods               | Offloads heavy models (e.g., Mixtral 8×7B, Llama 70B) for parallel or long-context evaluation. |
+| **RAG / Orchestration**            | Haystack 2 Pipelines                | Retrieval → Generation → Post-Processing workflows.                                            |
+| **Embeddings**                     | Sentence-Transformers               | Dense retrieval, reranking, and semantic similarity.                                           |
+| **Data Privacy**                   | Presidio                            | PII redaction and masking within AI data flows.                                                |
+| **Config & Schema**                | Pydantic / JSON Schema              | Typed I/O contracts and config validation.                                                     |
+| **Storage / Artifacts**            | Local FS / S3 (LocalStack)          | Persists corpora, indexes, and model run artifacts.                                            |
+
 
 ---
 

@@ -1,14 +1,14 @@
 # Principles
 
-This pipeline is intentionally designed as a framework, specification, and ontology not a prescriptive product. Its purpose is to define how assurance should work, not what specific tools must be used.  We hope to provide a common language and structure for continuous assurance.  If you will, a modular blueprint that any organization can implement using the technologies and processes that best fit their environment.
+This platform is intentionally designed as a framework, specification, and ontology not a prescriptive product. Its purpose is to define how assurance should work, not what specific tools must be used.  We hope to provide a common language and structure for continuous assurance.  If you will, a modular blueprint that any organization can implement using the technologies and processes that best fit their environment.
 
 ## Benefits of the this Approach
 
-* **Flexibility:** Teams can start small and expand—swap scanners, ticket tools, or registries without redesigning the pipeline.
+* **Flexibility:** Teams can start small and expand. You can swap scanners, ticketing systems, or registries without redesigning the pipeline underlying the platform.
 * **Portability:** Works across cloud, on-prem, or hybrid environments.
 * **Interoperability:** Encourages open standards (SARIF, OCI, SLSA, JSON-LD) instead of proprietary formats.
-* **Governance Consistency:** Even if implementations differ, the assurance model stays the same.
-* **Future-Proofing:** As new tools emerge (e.g., for AI assurance or data privacy), they can be plugged into existing stages with minimal friction.
+* **Governance Consistency:** Even if implementations differ, the assurance model and ontology stays the same.
+* **Future-Proofing:** As new tools emerge, they can be plugged into existing stages with minimal friction.
 
 Here is what we encourage everyone to keep in mind as we build this out:
 
@@ -18,7 +18,7 @@ Here is what we encourage everyone to keep in mind as we build this out:
 
 ## 1. Start with the Evidence, Not the Ticket
 
-The first rule is that your ticket/system is not your source of truth. It is your collaboration layer. The source of truth is the immutable evidence store:
+Your Ticket Management System (TMS) is not your source of truth. It is your collaboration layer. The source of truth is the immutable evidence store:
 
 - Each scanner (OpenGrep, ZAP, Trivy, Grype, etc.) outputs a signed SARIF or JSON file.  
 - Those files are stored in an OCI registry or a WORM-locked bucket, indexed by content digest.  
@@ -42,14 +42,14 @@ Instead of letting each scanner speak its own dialect, build a tiny “normalize
 - Emits a canonical JSON structure that any downstream system — Jira, Grafana, or a data lake — can consume.  
 
 This is your **Normalization Layer.**  
-Everything above it (Jira, dashboards, metrics) is replaceable.  
+Everything above it (TMS, dashboards, metrics) is replaceable.  
 Everything below it (SARIF, SBOMs, attestations) is immutable.
 
 ---
 
 ## 3. Replace the “Platform” With a Simple Sync Layer
 
-Once you’ve normalized your data, the integration with a ticket Management system is surprisingly straightforward.
+Once you’ve normalized your data, the integration with a TMS is surprisingly straightforward.
 
 Your CI/CD pipeline (or a scheduled job) can:
 
@@ -62,10 +62,10 @@ Your CI/CD pipeline (or a scheduled job) can:
 
 ```python
 fingerprint = sha1(ruleId + file + line)
-if not jira.issue_exists(fingerprint):
-    jira.create_issue(summary, description, severity, fingerprint)
+if not tms.issue_exists(fingerprint):
+    tms.create_issue(summary, description, severity, fingerprint)
 else:
-    jira.comment_issue(fingerprint, "Still open in commit abc123")
+    tms.comment_issue(fingerprint, "Still open in commit abc123")
 ```
 
 This approach gives you the same automation you’d expect from a dedicated vulnerability platform — but using lightweight code you control.
@@ -78,26 +78,26 @@ You can even enrich issues with contextual metadata:
 - **Evidence URI:** immutable link to SARIF  
 - **Labels:** `tool:semgrep`, `env:prod`, `scanner:v1.8`  
 
-Now Jira becomes a thin, flexible interface for triage and remediation — not a bloated database.
+Now your TMS becomes a thin, flexible interface for triage and remediation — not a bloated database.
 
 ---
 
-## 4. Keep It Immutable, even in Your Ticket System
+## 4. Keep It Immutable, even in Your TMS
 
 Immutability doesn’t stop at storage. It’s a philosophy that should extend all the way to your workflow.
 
 Here’s how to preserve that principle:
 
 - Don’t edit findings manually. Update them only by re-running scans and re-syncing.  
-- Add, never overwrite. If a vulnerability reappears, record it as a state change (“re-opened”), not a fresh ticket.  
+- Never overwrite. If a vulnerability reappears, record it as a state change (“re-opened”), not a fresh ticket.  
 - Keep digests, not filenames. References like `sha256:abcd...` ensure long-term verifiability.  
 - Sign your syncs. Each batch of issues you create or update can be wrapped in an attestation (`cosign attest`) listing input digests and timestamps.  
 
-This turns your vulnerability management process into a cryptographically provable audit trail, not a spreadsheet of opinions.
+This turns a process like vulnerability management into a cryptographically provable audit trail, not a spreadsheet of opinions.
 
 ---
 
-## 5. Automate the Metrics, Not the Meetings
+## 5. Automate the Metrics
 
 Once you decouple your evidence from your workflow, metrics become trivial.
 
@@ -141,7 +141,7 @@ That’s real continuous assurance — automated, auditable, and provable.
 ## 7. Design for Verifiability, Not Just Visibility
 
 Dashboards show what’s happening; verifiability proves it.  
-Every output should be independently checkable — by an auditor, a developer, or an external regulator.
+Every output should be independently checkable  by an auditor, a developer, or an external regulator.
 
 - Prefer **signed attestations** to unsigned reports.  
 - Record **policy version**, **scanner version**, and **timestamp** for every result.  

@@ -1,5 +1,7 @@
 nav:
 - index.md
 - poc.md
+- roadmap.md
+- testing.md
 - license.md
 - ...

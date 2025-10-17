@@ -6,12 +6,14 @@ site_author: Martin Harrod
 copyright: © Copyright 2025 Martin Harrod.
 
 # Repository information
-repo_name: certusTAP/docs
-repo_url: https://github.com/mharrod/certusTAP.git
-edit_uri: ""  # disable "edit this page" links
+repo_name: mharrod/certusTAP
+repo_url: https://github.com/mharrod/certusTAP
+edit_uri: edit/main/docs/ 
 
 # Theme
 theme:
+  icon:
+      repo: fontawesome/brands/github-alt
   name: material
   logo: assets/images/logo.png
   favicon: assets/images/favicon.ico
@@ -39,6 +41,9 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+    # - content.action.edit      # “Edit this page”
+    # - content.action.view      # “View source”
+    # - content.action.history   # “Page history”
     # - navigation.expand  # Disable default expand to allow collapsible dropdowns
 
 # Extra assets
