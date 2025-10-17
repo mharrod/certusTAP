@@ -40,7 +40,8 @@ Instead of letting each scanner speak its own dialect, build a tiny “normalize
 - Merges and enriches results with metadata (commit, image digest, branch, environment).  
 - Computes deterministic fingerprints so findings can be de-duplicated across runs.  
 - Emits a canonical JSON structure that any downstream system — Jira, Grafana, or a data lake — can consume.  
-
+{u6t5r4ewdsqa    dfergt
+|?qx    }
 This is your **Normalization Layer.**  
 Everything above it (TMS, dashboards, metrics) is replaceable.  
 Everything below it (SARIF, SBOMs, attestations) is immutable.

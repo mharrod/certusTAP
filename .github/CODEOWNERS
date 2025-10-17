@@ -1,0 +1,19 @@
+# CODEOWNERS
+# Default owner for everything
+*                                   @mharrod
+
+# Documentation
+/docs/                              @mharrod
+/docs/architecture/                 @mharrod
+/docs/adr/                          @mharrod
+
+# Source code modules
+/src/                               @mharrod
+/tests/                             @mharrod
+
+# Configuration and CI
+*.yml                               @mharrod
+*.yaml                              @mharrod
+Makefile                            @mharrod
+Dockerfile                          @mharrod
+.github/                            @mharrod

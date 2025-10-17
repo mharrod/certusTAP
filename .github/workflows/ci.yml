@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: |
+          pipx install poetry
+          poetry --version
+
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.create false
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-ansi
+
+      - name: Lint (optional)
+        run: |
+          if poetry run python -c "import importlib.util as i; exit(0 if i.find_spec('ruff') else 1)"; then poetry run ruff check .; else echo "ruff not installed, skipping"; fi
+          if poetry run python -c "import importlib.util as i; exit(0 if i.find_spec('black') else 1)"; then poetry run black --check .; else echo "black not installed, skipping"; fi
+          if poetry run python -c "import importlib.util as i; exit(0 if i.find_spec('mypy') else 1)"; then poetry run mypy .; else echo "mypy not installed, skipping"; fi
+
+      - name: Run tests
+        run: poetry run pytest -q
