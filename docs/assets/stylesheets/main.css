@@ -939,3 +939,9 @@ html[data-md-color-scheme="slate"] .md-typeset pre code {
 .md-typeset details.info > summary::after {
     color: #ffffff !important; 
 }
+
+
+/* Normalize left edge of the first paragraph inside admonitions */
+.md-typeset .admonition .admonition-content > p:first-child {
+  margin-left: 0; /* ensures it lines up with headings/lists */
+}

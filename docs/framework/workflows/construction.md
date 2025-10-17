@@ -1,5 +1,7 @@
 # Construction Use Case
 
+---
+
 This use case is a working-in-progress example of how the assurance framework and logic can be leveraged as part of a non-IT or cyber-physical system. While we are not necessarily building this out, the goal is to ensure that our framework can map to real-world domains where safety, integrity, and verifiable compliance are critical.
 
 ---

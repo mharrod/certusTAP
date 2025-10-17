@@ -1,5 +1,7 @@
 # Security Engineer 
 
+---
+
 #### 1) Session Initialization: Context Bootstrapping
 
 > *(Security Engineer ↔ Assurance Chat Agent ↔ TrustCentre)*

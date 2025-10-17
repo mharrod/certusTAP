@@ -1,11 +1,6 @@
 # Workflows
 
-## Introduction
-
-These workflowsdescribe how actors within the assurance ecosystem interact to achieve specific objectives.  
-They capture **who** is involved, **what** each participant does, and **why** the interaction matters in maintaining trust and verifiable assurance.
-
-In this documentation, each workflow represents a discrete and traceable scenario — from the registration of a system under test, to data normalization, AI reasoning, human review, policy enforcement, and independent audit.
+These workflows describe how actors within the assurance ecosystem interact to achieve specific objectives.  They capture **who** is involved, **what** each participant does, and **why** the interaction matters in maintaining trust and verifiable assurance.
 
 These workflows serve three main purposes:
 

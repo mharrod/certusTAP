@@ -1,104 +1,63 @@
 # Roadmap
-A forward roadmap integrating AI reasoning, evidence immutability, and human oversight into every stage of the assurance pipeline. We will follow a Crawl-->Walk-->Run-->Fly approach.
 
----
+ This roadmap outlines the evolution of the Certus TAP PoC from foundational R&D to a fully autonomous, trust-centric ecosystem. Each phase strengthens the integration of AI reasoning, immutable evidence, and human oversight.  We are aiming to ensure that assurance processes remain transparent, verifiable, and explainable. By progressing through a structured Crawl → Walk → Run → Fly approach, we hope to transform early experimental prototypes into production-grade, federated systems capable of sustaining continuous cross-organizational trust validation.
 
-??? info "**Crawl — Exploration & Foundational R&D**"
+Here is a summary of each phase:
 
-    
-    **Purpose:**  
+??? info "Crawl — Exploration & Foundational R&D"
 
-    Build the conceptual and technical scaffolding for the assurance ecosystem.  
-    This is the R&D-heavy phase where experimentation and discovery dominate.
+    | **Category**               | **Focus**                                                                                                                                           | **Outcomes**                                                                |
+    | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+    | **Core Platform**          | Establish reproducible local development using Python, Poetry, and Docker. Setup LocalStack + Harbor registries. Define assurance manifest schemas. | Foundational CLI scripts, developer reproducibility, and schema prototypes. |
+    | **Orchestration Pipeline** | Prototype Dagger-based workflows for signed evidence capture. Integrate initial scanner outputs (Trivy, Presidio).                                  | First end-to-end PoC for evidence registration and signature verification.  |
+    | **AI Reasoning Rail**      | Minimal; exploratory use of Haystack + Ollama for privacy text analysis and metadata tagging.                                                       | Early experiments in reasoning trace capture for explainability.            |
+    | **Trust Centre**           | Introduce Sigstore, RFC 3161 timestamp proofs, and Rekor transparency log.                                                                          | Immutable provenance for early evidence artifacts.                          |
+    | **Other**                  | Documentation and design decision logs; initial architecture diagrams.                                                                              | Shared R&D record for structured next-phase development.                    |
 
-    **Focus Areas:**
-
-    - R&D on assurance primitives (provenance, evidence registries, policy engines, DeepEval metrics)
-    - Prototype pipelines for signed evidence and AI reasoning validation
-    - Early integration of Haystack + Presidio + Ollama for privacy and explainability checks
-    - Definition of schemas and manifests for signed artifacts and trust proofs
-    - Highly adhoc, fragile, and manually driven workflows suited for technophiles
-
-    **Outcomes:**
-
-    - Early PoCs of signing, provenance, and reasoning traceability
-    - Foundational documentation of design decisions and architecture
-    - Developer-centric CLI scripts and reproducible Dagger pipelines
-    - Knowledge capture to guide structured development in the next phase
 
 ---
 
 ??? info "**Walk — Structured Development & CLI-Driven Workflows**"
 
-    **Purpose:**  
+    | **Category**               | **Focus**                                                                                                          | **Outcomes**                                                       |
+    | -------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+    | **Core Platform**          | Harden development stack (FastAPI services, Tekton deployment templates, VS Code devcontainers).                   | Reproducible local/test environments and schema validation via CI. |
+    | **Orchestration Pipeline** | Implement Tekton pipelines with Cosign signing, RFC 3161 timestamps, and consistent artifact schemas (SARIF/JSON). | Reliable CLI tools and containerized pipeline execution.           |
+    | **AI Reasoning Rail**      | Integrate reasoning outputs into normalization pipeline; start tracking explainability metrics via DeepEval.       | Structured reasoning traces linked to artifacts.                   |
+    | **Trust Centre**           | Deploy Harbor WORM registry and enforce signature verification on upload.                                          | Authenticated, timestamped artifacts with provenance.              |
+    | **Other**                  | Early dashboard for evidence status; internal SME alpha feedback loops.                                            | Alpha validation of usability and reproducibility.                 |
 
-    Transform experimentation into structured, reproducible, and developer-usable assurance pipelines.
-
-    **Focus Areas:**
-
-    - CLI tooling (`certus tap verify`, `certus tap evaluate`) for local/test use
-    - Consistent artifact schemas (SARIF, JSON, policy outputs)
-    - Early CI/CD pipelines integrating Cosign + RFC 3161 timestamps
-    - SME-ready local deployments for assurance validation
-    - Shift from discovery to repeatable trust workflows
-
-    **Outcomes:**
-
-    - Reliable CLI tools and containerized environments
-    - Documented schema standards and reproducible builds
-    - Integration testing and internal adoption by SMEs
-    - Early alpha releases and structured feedback loops
 
 ---
+
 
 ??? info "**Run — Defined Scope & Production-Ready Capabilities**"
 
 
-    **Purpose:**  
-
-    Operationalize core assurance services for controlled production deployment by SMEs and auditors.
-
-    **Focus Areas:**
-
-    - Clearly defined assurance scope and use cases (AI model assurance, policy validation, waiver management)
-    - Hardened APIs and registry integrations (Audit Ledger, WORM OCI Evidence Store)
-    - Governance enforcement — signature chains, waivers, audit logs
-    - Observability and reliability metrics integrated into CI/CD
-    - Security, integrity, and compliance validation embedded by design
-
-    **Outcomes:**
-
-    - Versioned and stable Certus TAP modules
-    - SMEs can deploy selected capabilities to production
-    - End-to-end traceability across evidence, policies, and reasoning traces
-    - Dashboards visualizing compliance, drift, and assurance performance
+    | **Category**               | **Focus**                                                                                                          | **Outcomes**                                                          |
+    | -------------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+    | **Core Platform**          | Harden container images, policies, and security posture; integrate observability (Prometheus/Grafana).             | Stable, secure deployment baseline for SMEs and auditors.             |
+    | **Orchestration Pipeline** | Expand Tekton pipelines for full assurance loops: scanning → normalization → enrichment → gating → signing.        | End-to-end traceability across all pipeline steps.                    |
+    | **AI Reasoning Rail**      | Operate reasoning components continuously: contextual analysis, bias/fairness checks, narrative generation.        | Explainable reasoning reports embedded in assurance outputs.          |
+    | **Trust Centre**           | Enable governance enforcement (signature chains, audit logs, waivers). Integrate Rekor + Cosign verification APIs. | Production-grade evidence integrity verification and audit readiness. |
+    | **Other**                  | Dashboards visualizing compliance, drift, and reasoning quality.                                                   | Live reporting and trace validation for auditors and SMEs.            |
 
 ---
 
 ??? info "**Fly — Autonomous, Trust-Centric Ecosystem**"
    
-    **Purpose:**  
+    | **Category**               | **Focus**                                                                                                        | **Outcomes**                                                               |
+    | -------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+    | **Core Platform**          | Deliver multi-tenant architecture; enable federated deployments; optimize performance for large-scale org use.   | Scalable, resilient “Assurance as a Service” platform.                     |
+    | **Orchestration Pipeline** | Introduce self-healing pipelines with AI-driven scheduling and dynamic resource allocation.                      | Autonomous orchestration with adaptive policy control.                     |
+    | **AI Reasoning Rail**      | Continuous, autonomous AI reasoning with human oversight; AI validation of reasoning reliability and bias drift. | Trustworthy, co-signed AI reasoning evidence with transparency dashboards. |
+    | **Trust Centre**           | Federated attestation exchange, cross-org signing, and provenance APIs.                                          | Global trust fabric with verifiable, replayable attestations.              |
+    | **Other**                  | Unified UI for policy authors, transparency reports, and governance analytics.                                   | Human–AI collaboration with complete evidence traceability.                |
 
-    Deliver a production-grade Assurance Platform uniting human and AI participants in continuous, explainable trust loops.
-
-    **Focus Areas:**
-
-    - Unified web/UI and API experience for non-technical users
-    - Continuous AI-in-the-loop assurance and governance automation
-    - Multi-tenant, federated deployments with inter-org attestation
-    - Governance dashboards, transparency reports, and human co-signatures
-    - Self-service onboarding and policy management
-
-    **Outcomes:**
-
-    - Full "Assurance as a Service" offering
-    - Immutable, cross-org evidence registries and reasoning reports
-    - AI and human decision-making transparently co-signed and auditable
-    - Enterprise-grade scalability, resilience, and trust certification readiness
 
 ---
 
-## **Crawl-to-Walk**
+## **Crawl-to-Walk (next 6-months)**
 
 The project is currently in **Crawl** and moving towards **Walk**, we are focusing on:
 
@@ -108,158 +67,112 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 - Preparing the transition to **Walk** with CLI and CI/CD integration groundwork
 
 
-### **A — Foundation & Evidence Layer**
+### 🔵  **A — Foundation & Evidence Layer** 
 
-**Goal:** Establish reproducible environments, baseline security hygiene, and immutable storage foundations.
 
-**Deliverables:**
-- LocalStack & OCI evidence registry setup  
-- Signed artifacts and attestations (Cosign)  
-- Tekton-based reproducible pipelines  
-- Foundational assurance manifest (YAML schema)
+:material-bullseye-arrow: **Goal:** Establish reproducible environments, baseline security hygiene, and immutable storage foundations.
 
-**AI Reasoning Integration:**
-- None required at this stage; focus on reproducibility for future AI traceability.
+| **Category**               | **Focus / Deliverables**                                                                                  | **Success Criteria**                                                                  |
+| -------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Core Platform**          | Local reproducible setup with Python + Poetry; LocalStack + Harbor registries; baseline Tekton pipelines. | All developers can spin up identical local environments via devcontainer or Makefile. |
+| **Orchestration Pipeline** | Simple Dagger → Tekton prototype for signed artifact flow; reproducible build/test stages.                | Tekton pipeline runs end-to-end locally, generating signed artifacts.                 |
+| **AI Reasoning Rail**      | None initially — focus on reproducibility for future reasoning traceability.                              | Reasoning interface stubbed and schema placeholder defined.                           |
+| **Trust Centre**           | Introduce Cosign signing, RFC 3161 timestamps, Rekor integration for immutable attestations.              | Cosign + Rekor verification successful on all sample evidence.                        |
+| **Other**                  | Architecture documentation and assurance manifest schema version-controlled.                              | Schema and CLI prototype merged and reviewed in repo.                                 |
 
----
-
-### **B — Normalization & Schema Standardization**
-
-**Goal:** Build the unified schema for assurance data across scanners, enrichers, and policy gates.
-
-**Deliverables:**
-
-- Normalization engine emitting SARIF + JSON  
-- Fingerprinting and severity mapping  
-- Schema registry for scanner outputs
-
-**AI Reasoning Integration:**
-
-- Introduce structured prompt schema for future reasoning steps.  
-- Map scanner findings to explainable categories for contextual analysis.
 
 ---
 
-### **C — Contextual Enrichment & Threat Intelligence**
+### 🟡 **B — Normalization & Schema Standardization**
 
-**Goal:** Enrich normalized findings with contextual metadata and threat intelligence feeds.
+:material-bullseye-arrow: **Goal:** Build the unified schema for assurance data across scanners, enrichers, and policy gates.
 
-**Deliverables:**
-- Contextual enrichment (service, component, environment)  
-- Threat enrichment (EPSS, KEV, CVSS, CWE)  
-- Business and compliance mappings
-
-**AI Reasoning Integration:**
-- Begin reasoning trace generation for enrichment logic (“why a finding matters”).  
-- AI produces draft rationales that are validated by DeepEval for faithfulness and accuracy.
-
----
-
-### **D — Thin Ticket Sync & Human-in-the-Loop**
-
-**Goal:** Seamlessly integrate findings into existing workflow tools (Jira, ServiceNow) with lightweight sync logic.
-
-**Deliverables:**
-- Ticket sync microservice (create/update logic)  
-- Evidence URIs embedded in tickets  
-- Basic waiver approval workflow
-
-**AI Reasoning Integration:**
-- AI Reasoning Rail generates remediation summaries and risk narratives for each issue.  
-- Outputs are verified for *faithfulness* (≥ 0.9) and *consistency* (≥ 0.8) before human review.  
-- Approvers can co-sign AI-authored content with audit trails logged in OCI.
+| **Category**               | **Focus / Deliverables**                                                             | **Success Criteria**                                                |
+| -------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| **Core Platform**          | Schema registry for scanner outputs and evidence formats.                            | Schema registry accessible and versioned in repository.             |
+| **Orchestration Pipeline** | Normalization engine emitting SARIF + JSON with fingerprinting and severity mapping. | All scanners emit normalized SARIF or JSON with valid fingerprints. |
+| **AI Reasoning Rail**      | Introduce structured prompt schema for future reasoning steps.                       | Prompt schema validated via JSON Schema tests.                      |
+| **Trust Centre**           | Signed schema manifests stored in Harbor with provenance metadata.                   | Signed manifests visible and retrievable via digest.                |
+| **Other**                  | Map scanner outputs to explainable assurance categories.                             | 100% of outputs mapped to unified severity scale.                   |
 
 ---
 
-### **E — Assurance Evaluation Loop**
+### 🟡 **C — Contextual Enrichment & Threat Intelligence**
 
-**Goal:** Establish automated assurance gates and reasoning validation feedback.
+:material-bullseye-arrow: **Goal:** Enrich normalized findings with contextual metadata and threat intelligence feeds.
 
-**Deliverables:**
-- Policy-as-Code framework (CUE/Rego)  
-- Evaluation engine producing signed results  
-- Dashboard showing rule compliance metrics
+| **Category**               | **Focus / Deliverables**                                                    | **Success Criteria**                                     |
+| -------------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **Core Platform**          | Enrichment microservice for service, environment, and component metadata.   | Deployed enrichment service producing contextual labels. |
+| **Orchestration Pipeline** | Integrate EPSS, KEV, CVSS, and CWE threat feeds into enrichment workflow.   | Nightly jobs automatically ingest threat feeds.          |
+| **AI Reasoning Rail**      | Generate reasoning traces (“why a finding matters”) validated via DeepEval. | ≥ 80% of enriched findings have reasoning traces.        |
+| **Trust Centre**           | Sign enriched artifacts and publish to WORM registry.                       | Enriched artifacts signed and traceable by digest.       |
+| **Other**                  | Business/compliance mappings to frameworks (e.g., NIST 800-53).             | Completed mapping for at least one major framework.      |
 
-**AI Reasoning Integration:**
-- AI Reasoning Rail analyzes assurance outcomes to produce explainable summaries.  
-- DeepEval, Guardrails, and Promptfoo enforce accuracy and safety on reasoning chains.  
-- Each output links reasoning traces → model ID → validation metrics → signature.
-
----
-
-### **F — Continuous Feedback & Drift Detection**
-
-**Goal:** Enable longitudinal tracking of reasoning and assurance quality across versions.
-
-**Deliverables:**
-- Drift detection for SBOM, manifest, and reasoning deltas  
-- Continuous assurance job scheduler  
-- Slack/Jira alert integration
-
-**AI Reasoning Integration:**
-- Semantic drift analysis on AI reasoning traces (Δ bias, Δ faithfulness).  
-- Model behavior and bias delta visualized in Grafana dashboards.  
-- Automated retraining triggers for significant reasoning drift (>5%).
 
 ---
 
-### **G — Governance, Metrics & Reporting**
+### ⚪ **D — Thin Ticket Sync & Human-in-the-Loop**
 
-**Goal:** Establish visibility and accountability across assurance operations.
+| **Category**               | **Focus / Deliverables**                                        | **Success Criteria**                                    |
+| -------------------------- | --------------------------------------------------------------- | ------------------------------------------------------- |
+| **Core Platform**          | Integrate OpenProject or Jira through sync microservice.        | Evidence-URI linking operational for all tickets.       |
+| **Orchestration Pipeline** | Automate waiver approval via Tekton pause/resume logic.         | Approval workflow completes with auditable trail.       |
+| **AI Reasoning Rail**      | Generate AI-authored remediation summaries and risk narratives. | AI outputs meet ≥ 0.9 faithfulness / ≥ 0.8 consistency. |
+| **Trust Centre**           | Store waiver artifacts and co-signed approvals in OCI registry. | 100% of waivers co-signed and logged in Rekor.          |
+| **Other**                  | Human-in-the-loop approval logging integrated into dashboard.   | Reviewer co-signatures visible and exportable.          |
 
-**Deliverables:**
-- Unified dashboard (Prometheus + Grafana)  
-- Monthly Assurance Report pipeline  
-- Signed summary artifacts in OCI
-
-**AI Reasoning Integration:**
-- Governance dashboards include reasoning reliability metrics (faithfulness, safety, bias drift).  
-- Human validators co-sign any AI-influenced decision paths.  
-- Transparency index reports generated from reasoning provenance data.
 
 ---
 
-### **H — Federated Trust & Inter-Org Attestation**
+### ⚪ **E — Assurance Evaluation Loop**
 
-**Goal:** Extend assurance verification across organizations and domains.
+:material-bullseye-arrow: **Goal:** Establish automated assurance gates and reasoning validation feedback.
 
-**Deliverables:**
-- Federation layer for replayable attestations  
-- Shared trust anchors (Sigstore, Rekor, SLSA provenance)  
-- Multi-tenant policy validation APIs
-
-**AI Reasoning Integration:**
-- AI Reasoning Rail evaluates and summarizes federated attestation trust chains.  
-- Provides narrative proofs of cross-org validation that are cryptographically linked to underlying evidence.  
-- DeepEval ensures factual grounding against signed provenance data.
+| **Category**               | **Focus / Deliverables**                                             | **Success Criteria**                                  |
+| -------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------- |
+| **Core Platform**          | Deploy Policy-as-Code runtime (CUE / OPA).                           | Policy engine operational inside cluster.             |
+| **Orchestration Pipeline** | Automated gate evaluation producing signed pass/fail reports.        | Gate results reproducible and versioned per manifest. |
+| **AI Reasoning Rail**      | AI analyzes assurance outcomes, validated via DeepEval + Guardrails. | All reasoning outputs validated automatically.        |
+| **Trust Centre**           | Sign evaluation outputs and link to manifest digest.                 | 100% of evaluation results signed and timestamped.    |
+| **Other**                  | Dashboard visualizes compliance and gate outcomes.                   | Live pass/fail metrics visible in Grafana.            |
 
 ---
 
-## Key Metrics & KPIs
+### ⚪ **F — Continuous Feedback & Drift Detection**
 
-| Metric | Description | Target |
-|---------|-------------|--------|
-| **Reasoning Faithfulness** | AI output alignment with verified evidence | ≥ 0.9 |
-| **Explainability Coverage** | % of outputs with structured reasoning trace | 100% |
-| **Bias Drift Delta** | % change in bias or fairness metrics | ≤ 5% |
-| **Reasoning Consistency** | Agreement across identical contexts | ≥ 0.8 |
-| **Human Validation Coverage** | % of AI outputs co-signed by human reviewers | ≥ 30% |
-| **Signature Freshness** | % of artifacts re-signed within SLA | 100% |
-| **Evidence Completeness** | Findings with valid OCI link | 100% |
+:material-bullseye-arrow: **Goal:** Enable longitudinal tracking of reasoning and assurance quality across versions.
+
+| **Category**               | **Focus / Deliverables**                            | **Success Criteria**                            |
+| -------------------------- | --------------------------------------------------- | ----------------------------------------------- |
+| **Core Platform**          | Implement Tekton CronJobs for continuous assurance. | Daily drift scans complete successfully.        |
+| **Orchestration Pipeline** | Detect SBOM, manifest, and reasoning deltas.        | Alerts generated within SLA (<15 min).          |
+| **AI Reasoning Rail**      | Monitor semantic drift (Δ bias, Δ faithfulness).    | Alerts trigger for drift > 5%.                  |
+| **Trust Centre**           | Auto-resign and re-timestamp drifted evidence.      | Updated signatures verified in Rekor.           |
+| **Other**                  | Slack/Jira notifications for drift events.          | Notifications received for 100% of drift cases. |
+
+
+---
+
+### ⚪ **G — Governance, Metrics & Reporting**
+
+:material-bullseye-arrow: **Goal:** Establish visibility and accountability across assurance operations.
+
+| **Category**               | **Focus / Deliverables**                         | **Success Criteria**                                  |
+| -------------------------- | ------------------------------------------------ | ----------------------------------------------------- |
+| **Core Platform**          | Unified Prometheus + Grafana dashboards.         | Dashboards accessible with all key KPIs.              |
+| **Orchestration Pipeline** | Monthly “Assurance Report” pipeline.             | Reports generated automatically each month.           |
+| **AI Reasoning Rail**      | Include reasoning reliability and drift metrics. | Governance report incorporates AI validation results. |
+| **Trust Centre**           | Signed summary artifacts stored immutably.       | 100% cryptographically verified reports.              |
+| **Other**                  | Governance review workflow.                      | ≥ 90% report delivery compliance across cycles.       |
+
 
 ---
 
-## Governance & Reporting Enhancements
+## Legend 
 
-- Every milestone produces **signed reasoning traces** alongside assurance artifacts.  
-- Monthly “Assurance & Reasoning Reliability” report includes:
-  - DeepEval & Guardrails metrics
-  - Reasoning drift graphs
-  - Reviewer co-signature statistics
-  - Cross-org reasoning trace validation summary
-
-**Outcome:**  
-By embedding reasoning transparency throughout — not as a bolt-on — the CAP platform achieves *human-auditable AI reasoning* and *machine-verifiable trust proofs* simultaneously.
-
----
+### 🟢 **Done**        
+### 🔵 **In Progress** 
+### 🟡 **Planning**    
+### ⚪ **Not Started**  
 

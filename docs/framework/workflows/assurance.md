@@ -1,10 +1,12 @@
 # Assurance & Audit
 
+---
+
 #### 1) Access & Scope Definition
 
-> *(Auditor ↔ TrustCentre ↔ Vendor ↔ Customer)*
+> *Review the sanitized findings*
 
-??? info "Independent Audit Workflow (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor
@@ -66,9 +68,9 @@
 
 #### 2) Provenance & Integrity Verification
 
-> *(Auditor ↔ TrustCentre Provenance Ledger ↔ Rekor ↔ in-toto/SLSA)*
+> *Confirm findings are legitimate*
 
-??? info "Provenance and Integrity Verification Workflow (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor
@@ -132,9 +134,9 @@
 
 #### 3) Review of Assurance Evidence
 
-> *(Auditor ↔ WORM OCI Evidence Registry ↔ Audit Ledger)*
+> *Review the audit ledger*
 
-??? info "Evidence Inspection and Traceability (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor
@@ -193,9 +195,9 @@
 
 #### 4) Policy Compliance Verification
 
-> *(Auditor ↔ Policy Gate Results ↔ Assurance Manifest)*
+> *Confirm you are meeting your organizational standards*
 
-??? info "Policy Mapping → Result Correlation → Human Review (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor
@@ -253,9 +255,9 @@
 
 #### 5) Reconstructing the Assurance Run
 
-> *(Auditor ↔ Ledger Replay ↔ Evidence Chain)*
+> *Replay the evidence chain for posterity*
 
-??? info "Historical Run Replay and Comparison (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor
@@ -313,7 +315,7 @@
 
 > *(Auditor ↔ TrustCentre Transparency Log ↔ Vendor/Customer)*
 
-??? info "Audit Attestation Use Case (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor
@@ -370,7 +372,7 @@
 
 > *(Auditor ↔ Event Feeds ↔ Rekor/TSA ↔ TrustCentre)*
 
-??? info "Continuous Assurance Subscription and Trust Reverification (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Auditor

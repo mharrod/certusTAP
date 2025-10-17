@@ -1,10 +1,10 @@
-# System
+# Core Processes
 ---
-#### 1) Assurance Defintion
+#### 1) Assurance Manifest Defintion
 
-> *(Customer ↔ Vendor ↔ System ↔ TrustCentre)*
+> *Declaring what trusted looks like*
 
-??? info "Customer ↔ Vendor ↔ TrustCentre (Assurance Alignment)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Customer
@@ -65,10 +65,9 @@
 
 #### 2) Scheduled Assurance Execution
 
-> *(Pipeline ↔ System ↔ TrustCentre)*
+> *Running an assurance check*
 
-
-??? info "Scheduled Assurance Execution (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant ORCH as Pipeline_Orchestrator
@@ -135,9 +134,9 @@
 
 #### 3) Normalization & Contextualization
 
-> *(System ↔ AI Retriever ↔ TrustCentre)*
+> *Make the data more useful*
 
-??? info "Normalization → Enrichment (Sequence)"
+??? info info "Click to view"
     ```mermaid
     sequenceDiagram
         participant NORM as Normalization_Component
@@ -202,9 +201,9 @@
 
 #### 4) Enrichment (Threat, Assurance & Policy)
 
-> *(System ↔ AI Fusion ↔ TrustCentre)*
+> *Enrich the data to make it more meaningful*
 
-??? info "Enrichment → AI Fusion → Policy Preparation (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant ENR as Enrichment_Service
@@ -272,9 +271,9 @@
 
 #### 5) Policy Gate & Human-in-the-Loop
 
-> *(Policy Engine ↔ Human Reviewer ↔ TrustCentre)*
+> *Double check that the outputs are legitimate*
 
-??? info "Policy Evaluation - Human Oversight - Audit (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant PolicyEngine
@@ -330,9 +329,9 @@
 
 #### 6) Evidence Finalization & Signing
 
-> *(Policy Gate ↔ TrustCentre Signing Service)*
+> *Sign and attest the findings*
 
-??? info "Policy Gate → Sign & Publish → Customer Verification (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant GATE as Policy_Gate_Sign_Verify_Service
@@ -395,9 +394,9 @@
 
 #### 7) Metrics, Visualization & Continuous Learning
 
-> *(Metrics Service ↔ Dashboard ↔ AI Analyst Module)*
+> *Interact and learn from the outcomes*
 
-??? info "Metrics → Visualization → AI Refinement → Trust Re-Anchoring (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant MET as Metrics_Service

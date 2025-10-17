@@ -4,7 +4,7 @@ In the interest of fostering an open and welcoming environment, we as contributo
 
 ---
 
-## Our Standards
+## :material-ruler-square: Our Standards
 
 Examples of behaviour that contribute to creating a positive environment include:
 
@@ -16,7 +16,7 @@ Examples of behaviour that contribute to creating a positive environment include
 
 ---
 
-## Contributing
+## :material-source-branch: Contributing
 
 There are many ways to contribute.  
 If you have an idea, a workflow improvement, or something others might find useful:
@@ -34,7 +34,7 @@ Once you’re there:
 
 ---
 
-## Contact Us
+## :material-email-outline: Contact Us
 
 We use **Zulip** as our primary space for community discussion and support.
 
@@ -45,7 +45,7 @@ It’s open to everyone — please join and say hello!
 
 ---
 
-## Community Meetings
+## :material-calendar-account: Community Meetings
 
 Our community operates primarily through **asynchronous communication** in Zulip.  
 Occasionally, we host live calls or collaborative sessions for key initiatives or releases.
@@ -56,7 +56,7 @@ If you’d like to organize a meeting or propose a topic for discussion, reach o
 
 ---
 
-## Code of Conduct
+## :material-scale-balance: Code of Conduct
 
 Participation in this community implies agreement to our [Code of Conduct](../community/conduct.mdcode-of-conduct.md).  
 

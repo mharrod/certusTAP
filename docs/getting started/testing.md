@@ -1,222 +1,134 @@
 # Testing 
 
-A unified, full-spectrum testing framework that integrates software quality, security, AI reliability, and operational assurance across all lifecycle phases.
+The Testing Framework is the core of the platform—where assurance principles are proven through practice. Testing isn’t an afterthought but a discipline that drives trust, reliability, and integrity across every phase. We “drink our own champagne,” applying the same rigorous validation to our own systems, producing signed outputs that evolve into verifiable assurance artifacts forming the backbone of continuous trust.
+
+Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 0 — Foundational Baselines
+## Phase 0 — Foundational Baselines  
 
-**Goal:** Establish reproducibility and consistent environments for all assurance workflows.
+:material-bullseye-arrow: **Goal:** Establish reproducibility and consistent environments for all assurance workflows.  
 
-**Approach:**
-
-- Validate environment reproducibility (`make test-env`, `dagger up`).
-- Snapshot tool versions for reproducibility (`bandit --version`, `trivy --version`, etc.).
-- Run dependency hygiene checks: `poetry check`, `pip-audit`.
-- Verify documentation build integrity with `mkdocs build --strict`.
-
-**Expected Output:**
-
-- `baseline.json` and `baseline.hash` signed with Cosign.
-- Verification logs confirming environment consistency.
-- Dependency and documentation validation results.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Validate environment reproducibility (`make test-env`, `dagger up`) <br> - Snapshot tool versions (`bandit --version`, `trivy --version`, etc.) <br> - Run dependency hygiene checks: `poetry check`, `pip-audit` <br> - Verify documentation build integrity: `mkdocs build --strict` |
+| **Expected Output** | - `baseline.json` and `baseline.hash` signed with Cosign <br> - Verification logs confirming environment consistency <br> - Dependency and documentation validation results |
 
 ---
 
-## Phase 1 — Static & Functional Testing
+## Phase 1 — Static & Functional Testing  
 
-**Goal:** Ensure correctness, code safety, and maintainability at rest.
+:material-bullseye-arrow: **Goal:** Ensure correctness, code safety, and maintainability at rest.  
 
-**Scope:**
-- Core Python modules (`ingest`, `retrieve`, `generate`, etc.)
-- Security and code quality scans (SAST + linting + typing).
-
-**Approach:**
-- Run unit tests with `pytest` (coverage > 85%).
-- Lint and format code: `ruff`, `flake8`, `black`.
-- Perform static typing checks: `mypy`.
-- Assess code complexity: `radon cc -s src/`.
-- Detect unused code: `vulture`.
-- Conduct Python-specific SAST: `bandit -r src/`.
-- Secrets detection: `gitleaks detect`.
-- Dependency CVE checks: `trivy fs .` or `grype`.
-
-**Expected Output:**
-- Test coverage and quality reports (JSON).
-- Linting and complexity metrics.
-- Signed SARIF output for SAST and SCA findings.
-- OCI evidence artifact: `oci://org/cap/static:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Scope** | - Core Python modules (`ingest`, `retrieve`, `generate`, etc.) <br> - Security and code quality scans (SAST + linting + typing) |
+| **Approach** | - Run unit tests with `pytest` (coverage > 85%) <br> - Lint and format: `ruff`, `flake8`, `black` <br> - Type checks: `mypy` <br> - Code complexity: `radon cc -s src/` <br> - Detect unused code: `vulture` <br> - SAST: `bandit -r src/` <br> - Secrets: `gitleaks detect` <br> - Dependency CVEs: `trivy fs .` or `grype` |
+| **Expected Output** | - Coverage and quality reports (JSON) <br> - Linting and complexity metrics <br> - Signed SARIF outputs <br> - OCI artifact: `oci://org/cap/static:<commit-hash>` |
 
 ---
 
-## Phase 2 — Dynamic & Runtime Security Testing
+## Phase 2 — Dynamic & Runtime Security Testing  
 
-**Goal:** Identify exploitable vulnerabilities in live or running environments.
+:material-bullseye-arrow: **Goal:** Identify exploitable vulnerabilities in live or running environments.  
 
-**Scope:**
-- FastAPI endpoints, dashboards, webhooks.
-- Authentication, rate limiting, input validation.
-
-**Approach:**
-- Deploy test environment using Dagger or Tekton.
-- Perform baseline DAST with OWASP ZAP.
-- Run Nuclei template scans (`cves`, `exposures`, `misconfigurations`).
-- Optionally run Burp Suite CI or API fuzzers.
-- Include lightweight performance regression with `pytest-benchmark` or `locust`.
-
-**Expected Output:**
-- DAST and Nuclei JSON + SARIF reports.
-- Runtime performance baselines.
-- OCI evidence: `oci://org/cap/dynamic:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Scope** | - FastAPI endpoints, dashboards, webhooks <br> - Authentication, rate limiting, input validation |
+| **Approach** | - Deploy test environment via Dagger or Tekton <br> - DAST with OWASP ZAP <br> - Nuclei scans (`cves`, `exposures`, `misconfigurations`) <br> - Optional Burp Suite CI or fuzzers <br> - Performance regression: `pytest-benchmark` or `locust` |
+| **Expected Output** | - DAST and Nuclei JSON/SARIF reports <br> - Runtime performance baselines <br> - OCI artifact: `oci://org/cap/dynamic:<commit-hash>` |
 
 ---
 
-## Phase 3 — Infrastructure & IaC Security Testing
+## Phase 3 — Infrastructure & IaC Security Testing  
 
-**Goal:** Validate security and compliance of infrastructure-as-code and container configurations.
+:material-bullseye-arrow: **Goal:** Validate security and compliance of infrastructure-as-code and container configurations.  
 
-**Scope:**
-- Terraform, Kubernetes manifests, Dockerfiles, GitHub Actions, etc.
-
-**Approach:**
-- Policy checks: `checkov -d infra/`, `tfsec`.
-- Container image scanning: `trivy image myimage:latest`.
-- Configuration scanning: `trivy config .`.
-- Dockerfile linting: `hadolint Dockerfile`.
-- Validate Terraform and Kubernetes manifests (`terraform validate`, `kubectl apply --dry-run`).
-- Apply CIS Benchmarks or custom Assurance Manifest policies.
-
-**Expected Output:**
-- IaC and container scan reports (SARIF + JSON).
-- Signed Cosign attestation: `oci://org/cap/infra:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Scope** | - Terraform, Kubernetes manifests, Dockerfiles, GitHub Actions |
+| **Approach** | - Policy checks: `checkov -d infra/`, `tfsec` <br> - Image scanning: `trivy image myimage:latest` <br> - Config scanning: `trivy config .` <br> - Dockerfile linting: `hadolint Dockerfile` <br> - IaC validation: `terraform validate`, `kubectl apply --dry-run` <br> - Apply CIS or custom Assurance policies |
+| **Expected Output** | - IaC and container reports (SARIF + JSON) <br> - Signed attestation: `oci://org/cap/infra:<commit-hash>` |
 
 ---
 
-## Phase 4 — Integration & End-to-End (E2E) Testing
+## Phase 4 — Integration & End-to-End (E2E) Testing  
 
-**Goal:** Validate the entire assurance workflow from ingestion to reporting.
+:material-bullseye-arrow: **Goal:** Validate the entire assurance workflow from ingestion to reporting.  
 
-**Approach:**
-- Use golden repositories with known vulnerabilities as test fixtures.
-- Execute `scan run --repo <fixture>`.
-- Compare deterministic outputs (`report.json`, `report.md`) across runs.
-- Validate output schema (Pydantic) and API contracts (Schemathesis).
-- Verify signatures (Cosign) and provenance reproducibility.
-
-**Expected Output:**
-- Signed E2E attestation (`oci://org/cap/e2e:<commit-hash>`).
-- Deterministic test outputs with verified signatures.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Use golden repos with known vulnerabilities <br> - Execute `scan run --repo <fixture>` <br> - Compare deterministic outputs (`report.json`, `report.md`) <br> - Validate schema (Pydantic) and API contracts (Schemathesis) <br> - Verify signatures (Cosign) and reproducibility |
+| **Expected Output** | - Signed E2E attestation: `oci://org/cap/e2e:<commit-hash>` <br> - Deterministic test outputs with verified signatures |
 
 ---
 
-## Phase 5 — Assurance Integrity & Non-Repudiation
+## Phase 5 — Assurance Integrity & Non-Repudiation  
 
-**Goal:** Verify the trustworthiness and provenance of all assurance artifacts.
+:material-bullseye-arrow: **Goal:** Verify the trustworthiness and provenance of all assurance artifacts.  
 
-**Approach:**
-- Verify Cosign signatures for reports and manifests.
-- Rebuild provenance graph using In-Toto links.
-- Validate Rekor transparency log entries.
-- Detect expired or invalid signatures.
-- Run documentation coverage audit: `interrogate`.
-- Prune unused code and stale references with `vulture`.
-
-**Expected Output:**
-- Provenance verification logs.
-- Signed verification evidence.
-- Documentation coverage report.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Verify Cosign signatures <br> - Rebuild provenance with In-Toto links <br> - Validate Rekor transparency logs <br> - Detect expired/invalid signatures <br> - Documentation audit: `interrogate` <br> - Remove stale code: `vulture` |
+| **Expected Output** | - Provenance verification logs <br> - Signed verification evidence <br> - Documentation coverage report |
 
 ---
 
-## Phase 6 — AI Assurance & Evaluation
+## Phase 6 — AI Assurance & Evaluation  
 
-**Goal:** Validate reasoning reliability, explainability, and fairness in AI-assisted components.
+:material-bullseye-arrow: **Goal:** Validate reasoning reliability, explainability, and fairness in AI-assisted components.  
 
-**Approach:**
-- Evaluate EXPLAIN/FIX/SUMMARIZE chains with DeepEval:
-  - Faithfulness ≥ 0.9
-  - Relevancy ≥ 0.85
-  - Consistency ≥ 0.8
-  - Safety: 0 unsafe outputs
-- Use GuardrailsAI or Promptfoo for schema and safety validation.
-- Add Pandera or Great Expectations for data consistency checks.
-- Include Feature Attribution Checks (SHAP, LIME).
-- Validate and sign prompt provenance.
-
-**Expected Output:**
-- DeepEval and Guardrails reports.
-- Drift and reasoning deltas.
-- OCI evidence: `oci://org/cap/ai-eval:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Evaluate EXPLAIN/FIX/SUMMARIZE chains (DeepEval) <br> - Faithfulness ≥ 0.9, Relevancy ≥ 0.85, Consistency ≥ 0.8, Safety = 0 <br> - Schema and safety validation: GuardrailsAI / Promptfoo <br> - Data consistency: Pandera / Great Expectations <br> - Feature attribution: SHAP, LIME <br> - Sign prompt provenance |
+| **Expected Output** | - DeepEval and Guardrails reports <br> - Drift and reasoning deltas <br> - OCI artifact: `oci://org/cap/ai-eval:<commit-hash>` |
 
 ---
 
-## Phase 7 — Continuous Regression & Drift Detection
+## Phase 7 — Continuous Regression & Drift Detection  
 
-**Goal:** Detect drift in security posture, assurance logic, and AI reasoning quality.
+:material-bullseye-arrow: **Goal:** Detect drift in security posture, assurance logic, and AI reasoning quality.  
 
-**Approach:**
-- Run scheduled continuous assurance jobs.
-- Compare DeepEval metrics, SBOM diffs, manifest digests, OpenGrep and Trivy results.
-- Run mutation testing (`mutmut run`) to evaluate test robustness.
-- Trigger re-evaluation if thresholds exceeded.
-
-**Expected Output:**
-- Drift reports (`drift.json`).
-- Mutation testing score (≥ 80% mutant kill rate).
-- OCI evidence: `oci://org/cap/drift:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Scheduled assurance jobs <br> - Compare DeepEval metrics, SBOM diffs, manifests <br> - Mutation testing (`mutmut run`) <br> - Trigger re-evaluation if thresholds exceeded |
+| **Expected Output** | - Drift reports (`drift.json`) <br> - Mutation testing score (≥80%) <br> - OCI artifact: `oci://org/cap/drift:<commit-hash>` |
 
 ---
 
-## Phase 8 — Human-in-the-Loop & Workflow Validation
+## Phase 8 — Human-in-the-Loop & Workflow Validation  
 
-**Goal:** Validate manual approvals, waivers, and review workflows.
+:material-bullseye-arrow: **Goal:** Validate manual approvals, waivers, and review workflows.  
 
-**Approach:**
-- Simulate analyst and approver flow interactions.
-- Validate RBAC and countersignature enforcement.
-- Attempt unauthorized waiver modifications.
-- Include accessibility and UX compliance checks with `axe-core` or `lighthouse-ci`.
-- Verify signed waiver artifacts.
-
-**Expected Output:**
-- Workflow validation log.
-- Accessibility compliance report.
-- OCI evidence: `oci://org/cap/hitl:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Simulate analyst and approver interactions <br> - Validate RBAC and countersignatures <br> - Attempt unauthorized modifications <br> - Accessibility checks: `axe-core`, `lighthouse-ci` <br> - Verify signed waiver artifacts |
+| **Expected Output** | - Workflow validation log <br> - Accessibility compliance report <br> - OCI artifact: `oci://org/cap/hitl:<commit-hash>` |
 
 ---
 
-## Phase 9 — Chaos & Resilience Testing
+## Phase 9 — Chaos & Resilience Testing  
 
-**Goal:** Validate the reliability and resilience of the assurance pipeline.
+:material-bullseye-arrow: **Goal:** Validate the reliability and resilience of the assurance pipeline.  
 
-**Scope:**
-- Registry downtime, corrupted artifacts, signer key rotation, and interrupted pipelines.
-
-**Approach:**
-- Simulate failure and recovery scenarios.
-- Verify pipeline resumption and signature integrity.
-- Measure recovery time and system stability.
-
-**Expected Output:**
-- Recovery and degradation reports.
-- Verified integrity logs.
-- OCI artifact: `oci://org/cap/chaos:<commit-hash>`.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Scope** | - Registry downtime, corrupted artifacts, key rotation, interrupted pipelines |
+| **Approach** | - Simulate failure and recovery <br> - Verify resumption and signature integrity <br> - Measure recovery time and stability |
+| **Expected Output** | - Recovery and degradation reports <br> - Verified integrity logs <br> - OCI artifact: `oci://org/cap/chaos:<commit-hash>` |
 
 ---
 
-## Phase 10 — Comprehensive Quality Audit & Attestation
+## Phase 10 — Comprehensive Quality Audit & Attestation  
 
-**Goal:** Produce a final aggregated quality and assurance attestation covering all phases.
+:material-bullseye-arrow: **Goal:** Produce a final aggregated quality and assurance attestation covering all phases.  
 
-**Approach:**
-- Aggregate reports from all previous phases (lint, test, drift, mutation, AI metrics).
-- Consolidate performance, complexity, and documentation results.
-- Generate a unified Quality Attestation Report (JSON + Markdown).
-- Sign and store in OCI registry.
+| **Category** | **Details** |
+| ------------- | ------------ |
+| **Approach** | - Aggregate results from all phases <br> - Consolidate performance, complexity, documentation <br> - Generate unified Quality Attestation (JSON + Markdown) <br> - Sign and store in OCI registry |
+| **Expected Output** | - Unified quality summary <br> - Signed attestation: `oci://org/cap/quality:<commit-hash>` |
 
-**Expected Output:**
-- Unified quality summary.
-- Signed attestation (`oci://org/cap/quality:<commit-hash>`).
 
 ---
 
