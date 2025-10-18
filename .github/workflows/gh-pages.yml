@@ -1,0 +1,44 @@
+name: Publish docs (MkDocs)
+
+on:
+  push:
+    branches: [ "main" ]   # change if your default branch is different
+  workflow_dispatch:       # allow manual runs
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write      # needed to push to gh-pages
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # If you use Poetry (you do), keep these two steps:
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Install deps
+        run: |
+          poetry install --no-interaction --no-root
+          # If MkDocs/Material are dev deps, this ensures they’re present:
+          poetry run pip show mkdocs-material >/dev/null 2>&1 || poetry run pip install mkdocs-material
+
+      - name: Build site
+        run: poetry run mkdocs build --strict
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./site
+          force_orphan: true
+          # cname: docs.example.com   # <-- uncomment & set if you use a custom domain
