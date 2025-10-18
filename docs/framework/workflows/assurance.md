@@ -4,7 +4,7 @@
 
 #### 1) Access & Scope Definition
 
-> *Review the sanitized findings*
+> *Review the sanitized findings.*
 
 ??? info "Click to view"
     ```mermaid
@@ -68,7 +68,7 @@
 
 #### 2) Provenance & Integrity Verification
 
-> *Confirm findings are legitimate*
+> *Confirm findings are legitimate.*
 
 ??? info "Click to view"
     ```mermaid
@@ -134,7 +134,7 @@
 
 #### 3) Review of Assurance Evidence
 
-> *Review the audit ledger*
+> *Review the audit ledger.*
 
 ??? info "Click to view"
     ```mermaid
@@ -195,7 +195,7 @@
 
 #### 4) Policy Compliance Verification
 
-> *Confirm you are meeting your organizational standards*
+> *Confirm you are meeting your organizational standards.*
 
 ??? info "Click to view"
     ```mermaid
@@ -255,7 +255,7 @@
 
 #### 5) Reconstructing the Assurance Run
 
-> *Replay the evidence chain for posterity*
+> *Replay the evidence chain for posterity.*
 
 ??? info "Click to view"
     ```mermaid
@@ -313,7 +313,7 @@
 
 #### 6) Report Generation & Attestation
 
-> *(Auditor ↔ TrustCentre Transparency Log ↔ Vendor/Customer)*
+> *Create reports and share the findings.*
 
 ??? info "Click to view"
     ```mermaid
@@ -370,7 +370,7 @@
 
 #### 7) Continuous Monitoring & Trust Renewal
 
-> *(Auditor ↔ Event Feeds ↔ Rekor/TSA ↔ TrustCentre)*
+> *Monitor the system for assurance events.*
 
 ??? info "Click to view"
     ```mermaid
@@ -430,15 +430,7 @@
 
 ---
 
-
----
-
 ## End State 
-
-> *(Verifiable Outcome)*
-
- "diagrams/workflows/basic-assurance.mmd"
-```
 
 **Desired Outcomes**
 
@@ -449,14 +441,7 @@
 | **Zero Additional Trust Assumptions** | Verification possible without the vendor’s pipeline. |
 | **Repeatable & Replayable** | Future audits can replay runs and confirm assurance continuity. |
 
-#### Auditor Value Summary
-
-> *(Outcomes Comparison)*
-
-agrams/workflows/basic-assurance.mmd"
-```
-
-**Desired Outcomes**
+**Auditor Value Summary**
 
 | Dimension | Old Way | New Continuous Assurance Way |
 |----------|---------|-------------------------------|
@@ -466,11 +451,4 @@ agrams/workflows/basic-assurance.mmd"
 | **Independence** | Based on vendor statements | Verified against immutable TrustCentre data |
 | **Non-Repudiation** | None | Built-in with Sigstore, WORM, TSA, KMS |
 
-
 ---
-
-**Copy Block (for narrative use)**
-
-“All declared controls were tested, verified, and logged immutably.  
- The integrity of each artifact is cryptographically proven via Sigstore, Rekor, and the TrustCentre Audit Ledger.  
- No further manual trust is required.”

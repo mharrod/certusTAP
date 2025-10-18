@@ -1,6 +1,8 @@
 # Roadmap
 
- This roadmap outlines the evolution of the Certus TAP PoC from foundational R&D to a fully autonomous, trust-centric ecosystem. Each phase strengthens the integration of AI reasoning, immutable evidence, and human oversight.  We are aiming to ensure that assurance processes remain transparent, verifiable, and explainable. By progressing through a structured Crawl → Walk → Run → Fly approach, we hope to transform early experimental prototypes into production-grade, federated systems capable of sustaining continuous cross-organizational trust validation.
+ This roadmap outlines the evolution of the Certus TAP PoC from foundational R&D to a fully autonomous, trust-centric ecosystem. Each phase strengthens the integration of AI reasoning, immutable evidence, and human oversight.  We are aiming to ensure that assurance processes remain transparent, verifiable, and explainable. 
+ 
+ >By progressing through a structured Crawl → Walk → Run → Fly approach, we hope to transform early experimental prototypes into production-grade, federated systems capable of sustaining continuous cross-organizational trust validation.
 
 Here is a summary of each phase:
 
@@ -9,7 +11,7 @@ Here is a summary of each phase:
     | **Category**               | **Focus**                                                                                                                                           | **Outcomes**                                                                |
     | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
     | **Core Platform**          | Establish reproducible local development using Python, Poetry, and Docker. Setup LocalStack(s3) + Harbor registries. Define assurance manifest schemas. | Foundational CLI scripts, developer reproducibility, and schema prototypes. |
-    | **Orchestration Pipeline** | Prototype Tekton-based workflows for signed evidence capture. Integrate initial scanner outputs (Trivy, Presidio).                                  | First end-to-end PoC for evidence registration and signature verification.  |
+    | **Orchestration Pipeline** | Prototype Tekton-based workflows for signed evidence capture. Integrate initial scanner outputs (OpenGrep, Trivy, Presidio).                        | First end-to-end PoC for evidence registration and signature verification.  |
     | **AI Reasoning Rail**      | Minimal; exploratory use of Haystack + LLM for privacy text analysis and metadata tagging.                                                       | Early experiments in reasoning trace capture for explainability.            |
     | **Trust Centre**           | Introduce Sigstore, RFC 3161 timestamp proofs, and Rekor transparency log.                                                                          | Immutable provenance for early evidence artifacts.                          |
     | **Other**                  | Documentation and design decision logs; initial architecture diagrams.                                                                              | Shared R&D record for structured next-phase development.                    |
@@ -48,7 +50,7 @@ Here is a summary of each phase:
    
     | **Category**               | **Focus**                                                                                                        | **Outcomes**                                                               |
     | -------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-    | **Core Platform**          | Deliver multi-tenant architecture; enable federated deployments; optimize performance for large-scale org use.   | Scalable, resilient “Assurance as a Service” platform.                     |
+    | **Core Platform**          | Deliver cloud-depoyable architecture and optimize performance for production use.                                | Scalable, resilient “Assurance as a Service” platform.                     |
     | **Orchestration Pipeline** | Introduce self-healing pipelines with AI-driven scheduling and dynamic resource allocation.                      | Autonomous orchestration with adaptive policy control.                     |
     | **AI Reasoning Rail**      | Continuous, autonomous AI reasoning with human oversight; AI validation of reasoning reliability and bias drift. | Trustworthy, co-signed AI reasoning evidence with transparency dashboards. |
     | **Trust Centre**           | Federated attestation exchange, cross-org signing, and provenance APIs.                                          | Global trust fabric with verifiable, replayable attestations.              |
@@ -113,6 +115,7 @@ The project is currently in **Crawl** and moving towards **Walk**, we are focusi
 ---
 
 ### ⚪ **D — Thin Ticket Sync & Human-in-the-Loop**
+:material-bullseye-arrow: **Goal:** Integrate human interactions into the system.
 
 | **Category**               | **Focus / Deliverables**                                        | **Success Criteria**                                    |
 | -------------------------- | --------------------------------------------------------------- | ------------------------------------------------------- |

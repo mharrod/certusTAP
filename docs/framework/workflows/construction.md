@@ -2,89 +2,8 @@
 
 ---
 
-This use case is a working-in-progress example of how the assurance framework and logic can be leveraged as part of a non-IT or cyber-physical system. While we are not necessarily building this out, the goal is to ensure that our framework can map to real-world domains where safety, integrity, and verifiable compliance are critical.
+This use case is a working-in-progress example of how the assurance framework and logic can be leveraged as part of a non-IT or cyber-physical system. While we are not necessarily building this out, the goal is to ensure that our framework can map to real-world domains where safety, integrity, and verifiable compliance are critical. The same “Continuous Assurance” framework that validates digital systems can validate physical systems like bridges or buildings. The only change is the *domain of metrics* but the principles of traceability, immutability, and verifiable policy alignment remain identical.
 
----
-??? info "Click to view Construction Assurance Flow (Mermaid Diagram)"
-    ```mermaid
-      flowchart TD
-          %% STYLE DEFINITIONS
-          classDef phase fill:#f2f2f2,stroke:#999,stroke-width:1px,color:#111,font-weight:bold
-          classDef system fill:#dbeafe,stroke:#60a5fa,color:#000
-          classDef ai fill:#fef3c7,stroke:#facc15,color:#000
-          classDef human fill:#dcfce7,stroke:#22c55e,color:#000
-          classDef storage fill:#fce7f3,stroke:#ec4899,color:#000
-          classDef ledger fill:#ede9fe,stroke:#8b5cf6,color:#000
-          classDef governance fill:#fee2e2,stroke:#f87171,color:#000
-
-          %% FLOW
-          subgraph P0["0️⃣ Pre-Construction Assurance"]
-              A0["Define Assurance Manifest\\n(Design Specs, Codes, Thresholds)"]
-              A1["Attestations from Engineers & Suppliers"]
-              A2["Baseline Manifest v0.0 Stored in TrustCentre"]
-              A0 --> A1 --> A2
-          end
-          class P0 phase
-
-          subgraph P1["1️⃣ Data Collection & Monitoring"]
-              B0["IoT Sensors & Drones\\nCollect QA/QC Data"]
-              B1["Material Tests, Safety Logs,\\nEnvironmental Readings"]
-              B2["Data Streamed to Assurance Pipeline"]
-              B0 --> B1 --> B2
-          end
-          class P1 system
-
-          subgraph P2["2️⃣ Normalization & Evaluation"]
-              C0["Normalize Sensor & Lab Data\\ninto SARIF-like Format"]
-              C1["AI Reasoner Compares\\nResults to Manifest Policies"]
-              C2{"Threshold Violations?"}
-              C0 --> C1 --> C2
-          end
-          class P2 ai
-
-          subgraph P3["3️⃣ Human-in-the-Loop Review"]
-              D0["Inspectors Review AI Flags"]
-              D1["Approve, Comment, or Waive Issues"]
-              D2["AI Feedback Loop Updated"]
-              C2 -->|Yes| D0 --> D1 --> D2
-              C2 -->|No| E0
-          end
-          class P3 human
-
-          subgraph P4["4️⃣ Evidence Generation & Storage"]
-              E0["Signed Assurance Report\\n(Cosign / KMS)"]
-              E1["Push to TrustCentre OCI"]
-              E2["Record in Immutable Ledger\\n(Rekor / QLDB)"]
-              D1 --> E0 --> E1 --> E2
-          end
-          class P4 storage,ledger
-
-          subgraph P5["5️⃣ Continuous Improvement & Audit"]
-              F0["Aggregate Historical Data\\ninto Assurance Knowledge Graph"]
-              F1["AI Reasoner Updates Thresholds"]
-              F2["Regulators & Auditors Verify\\nEvidence and Replay Provenance"]
-              F3["Human Committee Reviews\\nPolicy Updates"]
-              E2 --> F0 --> F1 --> F2 --> F3
-          end
-          class P5 governance
-
-          %% EXTERNAL ACTORS
-          EXT1(["Design Engineers"])
-          EXT2(["Inspectors & Safety Officers"])
-          EXT3(["AI Reasoner"])
-          EXT4(["TrustCentre / Ledger"])
-          EXT5(["Regulators / Auditors"])
-
-          %% RELATIONSHIPS
-          EXT1 -.-> A0
-          EXT2 -.-> D0
-          EXT3 -.-> C1
-          EXT4 -.-> E1
-          EXT5 -.-> F2
-
-          %% FLOW ORDER
-          P0 --> P1 --> P2 --> P3 --> P4 --> P5
-    ```
 
 ## 0) Pre-Construction Assurance (Design & Planning)
 
@@ -346,12 +265,5 @@ Every result — lab report, safety log, AI analysis, human approval — is:
 * **Drift Calibration Tests:** Confirm sensor accuracy and calibration integrity.  
 * **Human-in-the-Loop Testing:** Random audits of AI-flagged events with dual approval.  
 * **End-to-End Replay:** Re-run historical data to ensure deterministic reproducibility.  
-
----
-
-## Summary
-
-The same “Continuous Assurance” framework that validates AI systems can validate physical systems like bridges or buildings.  
-The only change is the *domain of metrics* — but the principles of traceability, immutability, and verifiable policy alignment remain identical.
 
 ---

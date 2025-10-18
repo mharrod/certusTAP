@@ -1,12 +1,16 @@
 # Security Engineer 
 
+For this particular set of workflows, we will focus on the activities and decision processes of a Security Engineer. These workflows illustrate how the engineer engages with assurance mechanisms throughout the lifecycle of evidence capture, validation, and analysis.  To provide a complete picture, these interactions are presented within the context of an a conversational chatbot interface designed to guide, validate, and document assurance activities in real time. The chatbot acts as both a facilitator and a verifier, ensuring that each action taken by the Security Engineer is traceable, policy-aligned, and cryptographically verifiable.
+
+By modeling these workflows through a chat-based interaction, we can highlight how automation, provenance, and AI reasoning converge to enhance trust, transparency, and accountability in modern security assurance operations.
+
 ---
 
 #### 1) Session Initialization: Context Bootstrapping
 
-> *(Security Engineer ↔ Assurance Chat Agent ↔ TrustCentre)*
+> *Ensure authrozied people start session with verified outputs.*
 
-??? info "Security Engineer ↔ Assurance Chat Agent ↔ TrustCentre (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant ENG as Security_Engineer
@@ -66,9 +70,9 @@
 
 #### 2) Exploratory Querying & Analysis
 
-> *(Security Engineer ↔ Assurance Chat Agent ↔ RAG Index / Ledger)*
+> *Explore and analyze the threat surface in detail.*
 
-??? info "Assurance Chat – Exploration Workflow (Simplified Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant ENG as Security_Engineer
@@ -134,9 +138,9 @@
 
 #### 3) Deep Reasoning & Threat Simulation
 
-> *(Security Engineer ↔ Assurance Chat Agent ↔ Source Graph / Dependencies)*
+> *Run simulations to see what security defects might exist.*
 
-??? info "What-If Simulation Workflow (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Engineer
@@ -190,9 +194,9 @@
 
 #### 4) AI-Augmented Root Cause Analysis
 
-> *(Security Engineer ↔ Assurance Chat Agent ↔ Findings Corpus)*
+> *Chat to root-cause.*
 
-??? info "Causal Reasoning and Auto Enrichment (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Engineer
@@ -247,9 +251,9 @@
 
 #### 5) Generating Signed Findings & Evidence
 
-> *(Security Engineer ↔ Assurance Chat Agent ↔ Audit Ledger / WORM OCI)*
+> *Review verified artifacts and findings.*
 
-??? info "Promote Insight → Create Evidence → Link to Manifest (Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Engineer
@@ -310,9 +314,9 @@
 
 #### 6) Continuous Feedback & Improvement
 
-> *(Assurance Chat Agent ↔ RAG Index ↔ TrustCentre)*
+> *(Provide meaningful feedback for AI improvement.*
 
-??? info "Learning Feedback Loop and Periodic Verification (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Agent as Assurance_Chat_Agent
@@ -359,9 +363,9 @@
 
 #### 7) Reporting & Sharing
 
-> *(Security Engineer ↔ Ticketing System ↔ TrustCentre)*
+> *Generate reports and findings for the team.*
 
-??? info "Summary and Peer Review Workflow (Safe Sequence)"
+??? info "Click to view"
     ```mermaid
     sequenceDiagram
         participant Engineer
@@ -417,9 +421,9 @@
 
 At the conclusion of these workflows:
 
-* Every **question**, **AI response**, and **human action** is logged in the **Audit Ledger**.  
-* Every **finding, insight, or simulated scenario** is **cryptographically signed** and **timestamped**.  
-* The **chat transcript** itself is replayable and verifiable — demonstrating **explainability, traceability, and accountability**.  
+* Every question, AI response, and human action is logged in the Audit Ledger.  
+* Every finding, insight, or simulated scenario is cryptographically signed and timestamped.  
+* The chat transcript itself is replayable and verifiable — demonstrating explainability, traceability, and accountability.  
 
 **Desired Outcomes**
 

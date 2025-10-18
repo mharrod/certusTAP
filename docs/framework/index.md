@@ -28,3 +28,4 @@ Ultimately, some of the use cases we hope to tackle with this approach include b
 * **Drive accountability** by codifying human decisions and approvals into the assurance record.
 * **Foster ecosystem collaboration**  through open, machine-interpretable assurance specifications.
 
+---

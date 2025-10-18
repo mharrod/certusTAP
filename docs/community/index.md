@@ -58,6 +58,6 @@ If you’d like to organize a meeting or propose a topic for discussion, reach o
 
 ## :material-scale-balance: Code of Conduct
 
-Participation in this community implies agreement to our [Code of Conduct](../community/conduct.mdcode-of-conduct.md).  
+Participation in this community implies agreement to our [Code of Conduct](../community/conduct.md)  
 
 We expect all interactions to align with the same principles of respect, inclusively, and constructive collaboration described above.

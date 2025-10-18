@@ -1,23 +1,21 @@
 # Testing 
 
-The Testing Framework is the core of the platform—where assurance principles are proven through practice. Testing isn’t an afterthought but a discipline that drives trust, reliability, and integrity across every phase. We “drink our own champagne,” applying the same rigorous validation to our own systems, producing signed outputs that evolve into verifiable assurance artifacts forming the backbone of continuous trust.
-
-Here is how we are looking to mature our testing capability:
+Below is the proposed testing plan for the PoC. Not all testing will be done on day one, but most of the testing categories should be in use before the end of the "Fly Phase".
 
 ---
 
-## Phase 0 — Foundational Baselines  
+## Foundational Baselines  
 
 :material-bullseye-arrow: **Goal:** Establish reproducibility and consistent environments for all assurance workflows.  
 
 | **Category** | **Details** |
 | ------------- | ------------ |
-| **Approach** | - Validate environment reproducibility (`make test-env`, `dagger up`) <br> - Snapshot tool versions (`bandit --version`, `trivy --version`, etc.) <br> - Run dependency hygiene checks: `poetry check`, `pip-audit` <br> - Verify documentation build integrity: `mkdocs build --strict` |
+| **Approach** | - Validate environment reproducibility (`make test-env`) <br> - Snapshot tool versions (`bandit --version`, `trivy --version`, etc.) <br> - Run dependency hygiene checks: `poetry check`, `pip-audit` <br> - Verify documentation build integrity: `mkdocs build --strict` |
 | **Expected Output** | - `baseline.json` and `baseline.hash` signed with Cosign <br> - Verification logs confirming environment consistency <br> - Dependency and documentation validation results |
 
 ---
 
-## Phase 1 — Static & Functional Testing  
+## Static & Functional Testing  
 
 :material-bullseye-arrow: **Goal:** Ensure correctness, code safety, and maintainability at rest.  
 
@@ -29,7 +27,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 2 — Dynamic & Runtime Security Testing  
+## Dynamic & Runtime Security Testing  
 
 :material-bullseye-arrow: **Goal:** Identify exploitable vulnerabilities in live or running environments.  
 
@@ -41,7 +39,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 3 — Infrastructure & IaC Security Testing  
+## Infrastructure & IaC Security Testing  
 
 :material-bullseye-arrow: **Goal:** Validate security and compliance of infrastructure-as-code and container configurations.  
 
@@ -53,7 +51,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 4 — Integration & End-to-End (E2E) Testing  
+## Integration & End-to-End (E2E) Testing  
 
 :material-bullseye-arrow: **Goal:** Validate the entire assurance workflow from ingestion to reporting.  
 
@@ -64,7 +62,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 5 — Assurance Integrity & Non-Repudiation  
+## Assurance Integrity & Non-Repudiation  
 
 :material-bullseye-arrow: **Goal:** Verify the trustworthiness and provenance of all assurance artifacts.  
 
@@ -75,7 +73,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 6 — AI Assurance & Evaluation  
+## AI Assurance & Evaluation  
 
 :material-bullseye-arrow: **Goal:** Validate reasoning reliability, explainability, and fairness in AI-assisted components.  
 
@@ -86,7 +84,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 7 — Continuous Regression & Drift Detection  
+## Continuous Regression & Drift Detection  
 
 :material-bullseye-arrow: **Goal:** Detect drift in security posture, assurance logic, and AI reasoning quality.  
 
@@ -97,7 +95,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 8 — Human-in-the-Loop & Workflow Validation  
+## Human-in-the-Loop & Workflow Validation  
 
 :material-bullseye-arrow: **Goal:** Validate manual approvals, waivers, and review workflows.  
 
@@ -108,7 +106,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 9 — Chaos & Resilience Testing  
+## Chaos & Resilience Testing  
 
 :material-bullseye-arrow: **Goal:** Validate the reliability and resilience of the assurance pipeline.  
 
@@ -120,7 +118,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 10 — Comprehensive Quality Audit & Attestation  
+## Comprehensive Quality Audit & Attestation  
 
 :material-bullseye-arrow: **Goal:** Produce a final aggregated quality and assurance attestation covering all phases.  
 

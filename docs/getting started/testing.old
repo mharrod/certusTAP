@@ -1,12 +1,10 @@
 # Testing 
 
-The Testing Framework is the core of the platform—where assurance principles are proven through practice. Testing isn’t an afterthought but a discipline that drives trust, reliability, and integrity across every phase. We “drink our own champagne,” applying the same rigorous validation to our own systems, producing signed outputs that evolve into verifiable assurance artifacts forming the backbone of continuous trust.
-
-Here is how we are looking to mature our testing capability:
+Below is the proposed testing plan for the PoC. Not all testing will be done on day one, but most of the testing categories should be in use before the end of the "Fly Phase".
 
 ---
 
-## Phase 0 — Foundational Baselines
+##  Foundational Baselines
 
 **Goal:** Establish reproducibility and consistent environments for all assurance workflows.
 
@@ -25,7 +23,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 1 — Static & Functional Testing
+## Static & Functional Testing
 
 **Goal:** Ensure correctness, code safety, and maintainability at rest.
 
@@ -51,7 +49,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 2 — Dynamic & Runtime Security Testing
+## Dynamic & Runtime Security Testing
 
 **Goal:** Identify exploitable vulnerabilities in live or running environments.
 
@@ -73,7 +71,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 3 — Infrastructure & IaC Security Testing
+## Infrastructure & IaC Security Testing
 
 **Goal:** Validate security and compliance of infrastructure-as-code and container configurations.
 
@@ -94,7 +92,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 4 — Integration & End-to-End (E2E) Testing
+## Integration & End-to-End (E2E) Testing
 
 **Goal:** Validate the entire assurance workflow from ingestion to reporting.
 
@@ -111,7 +109,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 5 — Assurance Integrity & Non-Repudiation
+## Assurance Integrity & Non-Repudiation
 
 **Goal:** Verify the trustworthiness and provenance of all assurance artifacts.
 
@@ -130,7 +128,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 6 — AI Assurance & Evaluation
+##  AI Assurance & Evaluation
 
 **Goal:** Validate reasoning reliability, explainability, and fairness in AI-assisted components.
 
@@ -152,7 +150,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 7 — Continuous Regression & Drift Detection
+##  Continuous Regression & Drift Detection
 
 **Goal:** Detect drift in security posture, assurance logic, and AI reasoning quality.
 
@@ -169,7 +167,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 8 — Human-in-the-Loop & Workflow Validation
+## Human-in-the-Loop & Workflow Validation
 
 **Goal:** Validate manual approvals, waivers, and review workflows.
 
@@ -187,7 +185,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 9 — Chaos & Resilience Testing
+##  Chaos & Resilience Testing
 
 **Goal:** Validate the reliability and resilience of the assurance pipeline.
 
@@ -206,7 +204,7 @@ Here is how we are looking to mature our testing capability:
 
 ---
 
-## Phase 10 — Comprehensive Quality Audit & Attestation
+## Comprehensive Quality Audit & Attestation
 
 **Goal:** Produce a final aggregated quality and assurance attestation covering all phases.
 

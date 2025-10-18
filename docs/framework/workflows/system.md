@@ -483,6 +483,4 @@ Every artifact—manifest, scan result, AI analysis, and final report—is:
 | **Immutable Trust Ledger** | The system provides a continuous, cryptographic chain of custody for all assurance activities. |
 | **Assured System Integrity** | Completes the feedback loop between evidence, policy, and verification — forming a persistent trust ecosystem. |
 
-
-
 ---
