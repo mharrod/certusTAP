@@ -1,13 +1,13 @@
 # Project information
 site_name: CERTUS TAP
 site_description: Certus AI
-site_url: 
+site_url: https://mharrod.github.io/certustap/
 site_author: Martin Harrod
 copyright: © Copyright 2025 Martin Harrod.
 
 # Repository information
 repo_name: mharrod/certustap
-repo_url: https://mharrod.github.io/certustap/
+repo_url: https://github.com/mharrod/certustap
 edit_uri: edit/main/docs/ 
 
 # Theme
