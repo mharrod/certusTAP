@@ -2,7 +2,7 @@ name: Publish docs (MkDocs → GitHub Pages)
 
 on:
   push:
-    branches: [ "main" ]          # change if your default branch differs
+    branches: [ "main" ]
   workflow_dispatch:
 
 # Required for the official Pages actions
@@ -30,25 +30,29 @@ jobs:
       - name: Install Poetry
         run: pipx install poetry
 
-      - name: Configure Poetry
+      - name: Configure Poetry (in-project venv)
         run: |
           poetry --version
           poetry config virtualenvs.in-project true
           poetry env use 3.12
 
-      - name: Cache Poetry virtualenv
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-py312-${{ hashFiles('**/poetry.lock', '**/pyproject.toml') }}
-          restore-keys: |
-            venv-${{ runner.os }}-py312-
+      # Tip: re-enable this after things are green if you want caching.
+      # - name: Cache Poetry virtualenv
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: .venv
+      #     key: venv-${{ runner.os }}-py312-${{ hashFiles('**/poetry.lock', '**/pyproject.toml') }}
+      #     restore-keys: |
+      #       venv-${{ runner.os }}-py312-
 
-      - name: Install dependencies
+      - name: Install dependencies (incl. dev)
         run: |
-          poetry install --no-interaction --no-root
-          # Ensure MkDocs + plugins are in the SAME Poetry venv (safe no-ops if already present)
+          # Install dev deps regardless of old/new Poetry layout
+          poetry install --no-interaction --no-root --with dev || poetry install --no-interaction --no-root
+          # Ensure MkDocs + plugins are definitely in the Poetry venv
           poetry run pip install --upgrade mkdocs mkdocs-material mkdocs-exclude
+          # Quick sanity print
+          poetry run python -c "import mkdocs, mkdocs_material, mkdocs_exclude; print('MkDocs:', mkdocs.__version__)"
 
       - name: Build site
         run: poetry run mkdocs build --strict
@@ -59,7 +63,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site   # MkDocs output dir
+          path: ./site
 
   deploy:
     environment:
