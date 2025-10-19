@@ -36,7 +36,7 @@ jobs:
           poetry config virtualenvs.in-project true
           poetry env use 3.12
 
-      # Tip: re-enable this after things are green if you want caching.
+      # (Re-enable a cache once things are green)
       # - name: Cache Poetry virtualenv
       #   uses: actions/cache@v4
       #   with:
@@ -47,12 +47,16 @@ jobs:
 
       - name: Install dependencies (incl. dev)
         run: |
-          # Install dev deps regardless of old/new Poetry layout
+          # New Poetry layout (groups) OR legacy – one of these will succeed
           poetry install --no-interaction --no-root --with dev || poetry install --no-interaction --no-root
           # Ensure MkDocs + plugins are definitely in the Poetry venv
-          poetry run pip install --upgrade mkdocs mkdocs-material mkdocs-exclude
-          # Quick sanity print
-          poetry run python -c "import mkdocs, mkdocs_material, mkdocs_exclude; print('MkDocs:', mkdocs.__version__)"
+          poetry run python -m pip install --upgrade mkdocs mkdocs-material mkdocs-exclude
+
+      - name: Verify MkDocs CLI & theme installed
+        run: |
+          set -e
+          poetry run mkdocs --version
+          poetry run python -m pip show mkdocs mkdocs-material mkdocs-exclude || true
 
       - name: Build site
         run: poetry run mkdocs build --strict
