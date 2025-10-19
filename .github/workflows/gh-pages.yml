@@ -3,13 +3,14 @@ name: Publish docs (MkDocs)
 on:
   push:
     branches: [ "main" ]      # change if your default branch differs
-  workflow_dispatch:          # allow manual runs
+  workflow_dispatch:
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write         # required to push to gh-pages
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,26 +29,47 @@ jobs:
           poetry config virtualenvs.in-project true
           poetry env use 3.12
 
+      # If you don't commit poetry.lock yet, consider running:
+      # - name: Create lockfile (first run only)
+      #   run: poetry lock --no-update
+
       - name: Cache Poetry virtualenv
         uses: actions/cache@v4
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}-py312
+          key: venv-${{ runner.os }}-py312-${{ hashFiles('**/poetry.lock', '**/pyproject.toml') }}
           restore-keys: |
-            venv-${{ runner.os }}-
+            venv-${{ runner.os }}-py312-
 
       - name: Install dependencies
         run: |
           poetry install --no-interaction --no-root
-          # ensure mkdocs & material are present (in case they’re dev-deps or missing)
+          # (Optional fallbacks if mkdocs/material aren't in pyproject)
           poetry run python -c "import mkdocs" 2>/dev/null || poetry run pip install mkdocs
           poetry run python -c "import mkdocs_material" 2>/dev/null || poetry run pip install mkdocs-material
 
-      # If you need to stage any non-Markdown assets into docs/, do it here.
-      # - name: Stage extra assets
-      #   run: |
-      #     mkdir -p docs/framework/ontology
-      #     cp framework/ontology/tao-ontology.ttl docs/framework/ontology/
+      - name: Verify MkDocs plugins (fail-fast)
+        run: |
+          set -e
+          poetry run python - << 'PY'
+import sys
+def check(mod):
+    try:
+        __import__(mod)
+        print(f"OK: {mod} importable")
+      except Exception as e:
+        print(f"FAIL: {mod} not importable -> {e}")
+        sys.exit(1)
+check("mkdocs")
+check("mkdocs_material")
+check("mkdocs_exclude")  # <- the plugin you're using in mkdocs.yml
+PY
+
+      # Safety net: if the plugin was missing due to an odd cache, install it now.
+      - name: Ensure mkdocs-exclude present (fallback)
+        if: ${{ failure() }}
+        run: |
+          poetry run pip install mkdocs-exclude
 
       - name: Build site
         run: poetry run mkdocs build --strict
@@ -59,5 +81,4 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./site
           force_orphan: true
-          # cname: docs.example.com   # <-- set if you use a custom domain
-
+          # cname: docs.example.com
