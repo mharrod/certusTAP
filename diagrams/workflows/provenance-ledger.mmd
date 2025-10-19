@@ -1,0 +1,7 @@
+graph LR
+    A[Auditor] -- Query & verify --> L[TrustCentre Provenance Ledger]
+    L -- Inclusion proof --> R[Rekor Transparency Log]
+    L -- Attestation bundle --> T[in-toto / SLSA Records]
+    R -- Signed timestamp --> A
+    T -- Build & scan lineage --> A
+    T -- Linked evidence --> L

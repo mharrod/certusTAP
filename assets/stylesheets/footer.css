@@ -1,0 +1,55 @@
+/* ----- Footer Styling for Brass & Sage Brand Palette ----- */
+
+/* Main footer background + text color */
+.md-footer {
+  color: var(--brand-bone);                               /* high-contrast text */
+  background-color: var(--brand-nickel);                  /* light mode: Nickel */
+  border-top: 1px solid var(--brand-steel);               /* subtle delineation */
+}
+
+html[data-md-color-scheme="slate"] .md-footer {
+  background-color: var(--brand-charcoal-slate);          /* dark mode: Charcoal Slate */
+}
+
+/* Meta section (below footer links) */
+.md-footer-meta {
+  background-color: var(--brand-charcoal-slate);          /* light mode: Charcoal Slate */
+  border-top: 1px solid rgba(185, 191, 184, 0.35);        /* gentle separator */
+}
+
+html[data-md-color-scheme="slate"] .md-footer-meta {
+  background-color: var(--brand-nickel-night);            /* dark mode: near-black nickel blend */
+  border-top: 1px solid rgba(185, 191, 184, 0.28);
+}
+
+/* Footer links */
+.md-footer a,
+.md-footer a:visited {
+  color: var(--brand-brass);                               /* warm accent links */
+}
+
+.md-footer a:hover,
+.md-footer a:focus {
+  color: var(--brand-brass-soft);
+}
+
+/* Footer icons — use accent for subtle contrast */
+.hp-footer-icon {
+  color: var(--brand-brass);                               /* brass accent icons */
+  margin-right: 10px;
+  height: 32px;
+  width: 32px;
+}
+
+/* Copyright + text alignment */
+.hp-footer-copyright {
+  color: var(--brand-bone);
+  position: relative;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}

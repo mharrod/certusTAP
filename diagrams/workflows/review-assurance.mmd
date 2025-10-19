@@ -1,0 +1,42 @@
+%% diagrams/workflows/basic-assurance.mmd
+%% 3) Review of Assurance Evidence — Auditor ↔ WORM OCI Evidence Registry ↔ Audit Ledger
+
+sequenceDiagram
+    autonumber
+    actor A as Auditor
+    participant R as WORM OCI Evidence Registry
+    participant L as Audit Ledger
+    participant S as Sigstore/Cosign + Rekor
+    participant T as RFC 3161 TSA
+
+    Note over R: WORM = Write Once, Read Many (immutable)
+    A->>R: Browse <br/>oci://trustcentre/org/product@sha256:...
+    R-->>A: Signed artifacts: <br/>SARIF · AI assurance reports · policy results · waivers · DeepEval metrics
+
+    loop For each retrieved artifact
+        A->>S: Verify signature (keyless / threshold)
+        S-->>A: OK + Rekor inclusion proof
+
+        A->>T: Validate timestamp token (RFC 3161)
+        T-->>A: Timestamp OK
+
+        A->>L: Lookup ledger entry by artifact hash
+        L-->>A: Ledger record: hash, provenance, policy decision, DeepEval score
+    end
+
+    opt AI Reasoning Traceability
+        A->>L: Retrieve reasoning trace<br/>(Prompt → Context → Model → Output → Evaluation)
+        Note right of L: Each step hashed & linked<br/>DeepEval score recorded
+        L-->>A: Trace bundle + step hashes + scores
+        A-->>A: Validate schema + hash chain + score thresholds
+    end
+
+    alt Evidence mismatch or policy fail
+        A->>L: Record discrepancy & open waiver request (JSON waiver)
+        L-->>A: Waiver ID + pending status logged
+    else Evidence valid
+        A->>L: Append review attestation (signed)
+        L-->>A: Attestation anchored in ledger
+    end
+
+    Note over A,R,L: Outcomes are auditable, immutable, and time-stamped

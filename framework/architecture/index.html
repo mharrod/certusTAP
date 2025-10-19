@@ -1,0 +1,2093 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Certus AI">
+      
+      
+        <meta name="author" content="Martin Harrod">
+      
+      
+      
+        <link rel="prev" href="../principles/">
+      
+      
+        <link rel="next" href="../workflows/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Architecture - CERTUS TAP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.css">
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/footer.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="certus" data-md-color-accent="certus">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CERTUS TAP" class="md-header__button md-logo" aria-label="CERTUS TAP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CERTUS TAP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="certus" data-md-color-accent="certus"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="certus" data-md-color-accent="certus"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://mharrod.github.io/certusTAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mharrod/certusTAP
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting%20started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Framework
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CERTUS TAP" class="md-nav__button md-logo" aria-label="CERTUS TAP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    CERTUS TAP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://mharrod.github.io/certusTAP" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mharrod/certusTAP
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting%20started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting%20started/poc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proof of Concept
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting%20started/roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting%20started/testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting%20started/license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Framework
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Framework
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-assurance-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Assurance Manifest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pipeline-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pipeline Orchestration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-systems-under-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Systems Under Test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-scanning-assurance-testing-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Scanning — Assurance Testing Tooling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Normalization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Enrichment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Enrichment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-contextual-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Contextual Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-threat-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Threat Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-policy-gate-policy-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Policy Gate (Policy Decision)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-human-in-the-loop-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Human in the Loop (HITL)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-outputs-and-evidence-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Outputs and Evidence Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Outputs and Evidence Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-ticket-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Ticket Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-artifacts-oci-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Artifacts (OCI Registry)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-visualization-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Visualization &amp; Dashboards
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-trustcentre" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. TrustCentre
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ai-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. AI Reasoning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-assurance-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Assurance Chatbot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-evidence-traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Evidence &amp; Traceability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-key-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Key Design Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-optional-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Optional Extensions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../workflows/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Workflows
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Workflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core Processes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/assurance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assurance &amp; Audit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/engineer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Engineer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflows/construction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Construction Use Case
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../ontology/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Ontology
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Ontology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ontology/tao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Certus TAO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../community/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Community
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Community
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code of Conduct
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-assurance-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Assurance Manifest
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pipeline-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pipeline Orchestration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-systems-under-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Systems Under Test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-scanning-assurance-testing-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Scanning — Assurance Testing Tooling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Normalization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Enrichment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Enrichment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-contextual-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Contextual Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-threat-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Threat Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-policy-gate-policy-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Policy Gate (Policy Decision)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-human-in-the-loop-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Human in the Loop (HITL)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-outputs-and-evidence-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Outputs and Evidence Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Outputs and Evidence Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-ticket-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Ticket Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-artifacts-oci-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      C. Artifacts (OCI Registry)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-visualization-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Visualization &amp; Dashboards
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-trustcentre" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. TrustCentre
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ai-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. AI Reasoning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-assurance-chatbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Assurance Chatbot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-evidence-traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Evidence &amp; Traceability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-key-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Key Design Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-optional-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Optional Extensions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<details class="info" open="open">
+<summary>Click to view Architecture</summary>
+<p><img alt="Pipeline Diagram" class="static-diagram" src="../../assets/images/assurance.png" /></p>
+</details>
+<hr />
+<h3 id="1-assurance-manifest">1. Assurance Manifest<a class="headerlink" href="#1-assurance-manifest" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> The declarative control layer that defines assurance scope, configurations, and required checks.<br />
+It describes what systems, tests, and policies are to be run, and acts as the canonical “contract” for an assurance run.</p>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Declare systems, models, and artifacts under test  </li>
+<li>Reference applicable policies, frameworks, and thresholds  </li>
+<li>Define metadata (owners, risk context, environments)  </li>
+<li>Produce signed assurance manifests sent to the OCI registry</li>
+</ul>
+<hr />
+<h3 id="2-pipeline-orchestration">2. Pipeline Orchestration<a class="headerlink" href="#2-pipeline-orchestration" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> The control layer that runs and coordinates all scanning, enrichment, and gating tasks.<br />
+<strong>Examples:</strong> Dagger, GitHub Actions, Tekton, GitLab CI/CD, or any workflow orchestrator.</p>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Schedule and execute the assurance stages  </li>
+<li>Manage data flow between scanners, normalizers, enrichers, and gates  </li>
+<li>Ensure each step emits signed evidence artifacts  </li>
+</ul>
+<hr />
+<h3 id="3-systems-under-test">3. Systems Under Test<a class="headerlink" href="#3-systems-under-test" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> The targets being evaluated — can be application code, AI models, datasets, configurations, or deployed systems.  </p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Source repositories (code)</li>
+<li>Trained AI models (<code>.onnx</code>, <code>.pt</code>, <code>.safetensors</code>)</li>
+<li>Cloud workloads (VMs, clusters)</li>
+<li>Data assets or ETL pipelines  </li>
+</ul>
+<p><strong>Output:</strong> Artifacts ready for scanning.</p>
+<hr />
+<h3 id="4-scanning-assurance-testing-tooling">4. Scanning — Assurance Testing Tooling<a class="headerlink" href="#4-scanning-assurance-testing-tooling" title="Permanent link">&para;</a></h3>
+<p>Scanners identify security flaws, policy violations, or data risks across multiple assurance domains.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Example Tools</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Security</strong></td>
+<td>SAST, DAST, SCA, IaC</td>
+<td>Vulnerabilities, misconfigurations</td>
+</tr>
+<tr>
+<td><strong>Integrity</strong></td>
+<td>Sigstore, SLSA, Falco</td>
+<td>Provenance, tamper detection, drift</td>
+</tr>
+<tr>
+<td><strong>Privacy</strong></td>
+<td>Presidio, Macie, Great Expectations</td>
+<td>PII leakage, data masking, privacy risk</td>
+</tr>
+<tr>
+<td><strong>AI Assurance</strong></td>
+<td>PyRIT, AIF360, DeepEval, Guardrails</td>
+<td>Bias, fairness, hallucination, unsafe output</td>
+</tr>
+</tbody>
+</table>
+<p>Each scanner produces structured output (e.g., SARIF, JSON, or custom format).</p>
+<hr />
+<h3 id="5-normalization">5. Normalization<a class="headerlink" href="#5-normalization" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Converts heterogeneous scanner results into a consistent schema for downstream analysis.</p>
+<p><strong>Key Tasks:</strong></p>
+<ul>
+<li><strong>Schema Alignment:</strong> Convert outputs (SARIF preferred) to a standard model  </li>
+<li><strong>Fingerprinting:</strong> Assign unique IDs to findings (to track persistence across runs)  </li>
+<li><strong>Severity Mapping:</strong> Standardize severities (e.g., map “critical” → CVSS 9–10)</li>
+</ul>
+<p><strong>Output Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;snyk&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;service-a&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;src/main.py&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="6-enrichment">6. Enrichment<a class="headerlink" href="#6-enrichment" title="Permanent link">&para;</a></h3>
+<h4 id="a-contextual-enrichment">A. Contextual Enrichment<a class="headerlink" href="#a-contextual-enrichment" title="Permanent link">&para;</a></h4>
+<p>Adds business, operational, and traceability context.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Severity</strong></td>
+<td>Finalized severity after normalization</td>
+</tr>
+<tr>
+<td><strong>Component or Service</strong></td>
+<td>Derived from repo or deployment manifest</td>
+</tr>
+<tr>
+<td><strong>Evidence URI (Placeholder)</strong></td>
+<td>Temporary identifier that will later point to the signed OCI evidence</td>
+</tr>
+<tr>
+<td><strong>Additional Labels</strong></td>
+<td>e.g., <code>tool:snyk</code>, <code>env:prod</code>, <code>team:payments</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-threat-enrichment">B. Threat Enrichment<a class="headerlink" href="#b-threat-enrichment" title="Permanent link">&para;</a></h4>
+<p>Adds external risk intelligence and threat context.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CVSS / CWE / CPE</strong></td>
+<td>Classification and scoring references</td>
+</tr>
+<tr>
+<td><strong>Exploit Available?</strong></td>
+<td>Indicates known exploit existence</td>
+</tr>
+<tr>
+<td><strong>EPSS Score</strong></td>
+<td>Probability of exploitation</td>
+</tr>
+<tr>
+<td><strong>Patch Available</strong></td>
+<td>Boolean flag for fixability</td>
+</tr>
+<tr>
+<td><strong>Vulnerability Score</strong></td>
+<td>Composite risk score based on contextual + threat data</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="7-policy-gate-policy-decision">7. Policy Gate (Policy Decision)<a class="headerlink" href="#7-policy-gate-policy-decision" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> The automated evaluation checkpoint where findings are tested against defined policies.<br />
+<strong>Implemented as:</strong> Code-based policy (CUE, Rego, or OPA rules).</p>
+<p><strong>Core Inputs:</strong></p>
+<ul>
+<li>Normalized and enriched findings  </li>
+<li>Policy definitions and thresholds  </li>
+<li>Optional human approvals (from previous runs)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SEC-001</strong></td>
+<td>No critical vulnerabilities in production without valid waiver</td>
+</tr>
+<tr>
+<td><strong>INT-002</strong></td>
+<td>Artifacts must have valid Sigstore signature</td>
+</tr>
+<tr>
+<td><strong>PRV-003</strong></td>
+<td>Privacy risk score must be ≤ 0.5</td>
+</tr>
+<tr>
+<td><strong>AI-004</strong></td>
+<td>Model bias must be ≤ 0.2 or requires review</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Outputs:</strong></p>
+<ul>
+<li><strong>Pass:</strong> All rules satisfied → pipeline proceeds automatically  </li>
+<li><strong>Fail:</strong> One or more violations detected → triggers Human-in-the-Loop  </li>
+</ul>
+<hr />
+<h3 id="8-human-in-the-loop-hitl">8. Human in the Loop (HITL)<a class="headerlink" href="#8-human-in-the-loop-hitl" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Manual approval or override for exceptions requiring judgment.</p>
+<p><strong>Triggered by:</strong></p>
+<ul>
+<li>Known exploited vulnerabilities (KEV = true)</li>
+<li>High EPSS (≥ 0.7)</li>
+<li>Critical/High findings in production</li>
+<li>Potential false positives</li>
+</ul>
+<p><strong>Process:</strong></p>
+<ol>
+<li>Gate pauses and sends a review request (ticket or form)  </li>
+<li>Reviewer assesses evidence and approves or rejects  </li>
+<li>Approved waivers are signed and stored as OCI artifacts  </li>
+<li>Pipeline resumes and re-evaluates the gate with approval context  </li>
+</ol>
+<p><strong>Evidence Type Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;approval&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;approved_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seclead@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;finding:abc123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expires_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-05&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="9-outputs-and-evidence-management">9. Outputs and Evidence Management<a class="headerlink" href="#9-outputs-and-evidence-management" title="Permanent link">&para;</a></h3>
+<p>After passing the policy gate (either automatically or with approval), the pipeline produces three main evidence outputs.</p>
+<h4 id="a-metrics">A. Metrics<a class="headerlink" href="#a-metrics" title="Permanent link">&para;</a></h4>
+<p>Aggregated quantitative data (counts, trends, severities, scores).<br />
+Used for visualization and continuous monitoring.<br />
+<strong>Examples:</strong> vulnerability counts by team, mean time to approval, bias trendline.</p>
+<h4 id="b-ticket-management">B. Ticket Management<a class="headerlink" href="#b-ticket-management" title="Permanent link">&para;</a></h4>
+<p>Issues and findings are synchronized into a project management tool (e.g., OpenProject, Jira).<br />
+Each ticket links to its Evidence URI in the OCI registry.<br />
+Supports remediation tracking and SLA management.</p>
+<h4 id="c-artifacts-oci-registry">C. Artifacts (OCI Registry)<a class="headerlink" href="#c-artifacts-oci-registry" title="Permanent link">&para;</a></h4>
+<p>The canonical storage for all signed evidence:
+- Normalized results<br />
+- Enrichment data<br />
+- Policy evaluation output<br />
+- Human approvals  </p>
+<p>Each artifact is immutable and referenced by a digest (e.g., <code>oci://assurance/findings@sha256:...</code>).</p>
+<hr />
+<h3 id="10-visualization-dashboards">10. Visualization &amp; Dashboards<a class="headerlink" href="#10-visualization-dashboards" title="Permanent link">&para;</a></h3>
+<p><strong>Visualization:</strong> Feeds from Metrics for reporting and analytics.<br />
+Commonly implemented via <strong>Grafana</strong> or similar dashboards.</p>
+<p><strong>Dashboard (Governance View):</strong>  </p>
+<p>Feeds from Ticket Management for operational tracking.<br />
+Provides audit-ready evidence of exceptions, open risks, and assurance status.</p>
+<hr />
+<h3 id="11-trustcentre">11. TrustCentre<a class="headerlink" href="#11-trustcentre" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> The cryptographic and identity backbone of the assurance framework — ensuring that all evidence, policies, and approvals are verifiable, timestamped, and immutable.</p>
+<p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sign / Verify</strong></td>
+<td>Handles digital signatures (Cosign, KMS, or keyless Sigstore). Every artifact, manifest, and waiver is signed before publishing.</td>
+</tr>
+<tr>
+<td><strong>WORM-Compliant OCI</strong></td>
+<td>Write-Once, Read-Many (WORM)–compliant OCI registry that guarantees immutability for stored evidence (e.g., Harbor, ORAS, GCP Artifact Registry).</td>
+</tr>
+<tr>
+<td><strong>Transparency</strong></td>
+<td>Enables public or internal verifiability of evidence chains using transparency logs (e.g., Rekor) or Merkle proofs.</td>
+</tr>
+<tr>
+<td><strong>Provenance</strong></td>
+<td>Records the lineage of all artifacts — mapping “who, what, when, how” for every piece of evidence.</td>
+</tr>
+<tr>
+<td><strong>Audit Ledger</strong></td>
+<td>A verifiable event log that records all pipeline operations, human approvals, and gate evaluations for audit readiness.</td>
+</tr>
+<tr>
+<td><strong>Timestamp</strong></td>
+<td>RFC 3161–compliant timestamps to bind evidence to trusted time anchors.</td>
+</tr>
+<tr>
+<td><strong>Key &amp; Identity Management</strong></td>
+<td>Integrates enterprise KMS, OIDC identity providers, and Vault for secure key material and policy-based signing. Supports threshold signatures and delegated authority (e.g., policy keys).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Output:</strong> Signed, timestamped, and provenance-linked artifacts that form the root of trust for the entire assurance ecosystem.</p>
+<hr />
+<h3 id="12-ai-reasoning">12. AI Reasoning<a class="headerlink" href="#12-ai-reasoning" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Provides semantic analysis, correlation, and higher-order reasoning across all assurance artifacts using AI models.<br />
+Acts as the “assurance intelligence” layer that can interpret evidence, generate insights, and assist reviewers.</p>
+<p><strong>Core Modules:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Retrievers</strong></td>
+<td>Query vector databases or OCI manifests to locate relevant evidence, policies, and prior run history.</td>
+</tr>
+<tr>
+<td><strong>Fusion Logic</strong></td>
+<td>Aggregates multi-source evidence and correlates findings (e.g., linking a vulnerability with its exploit probability and waiver context).</td>
+</tr>
+<tr>
+<td><strong>LLM Chain</strong></td>
+<td>Executes large language model (LLM) workflows — e.g., summarizing findings, generating assurance narratives, or classifying risks.</td>
+</tr>
+<tr>
+<td><strong>Schema &amp; Safety Gates</strong></td>
+<td>Enforces guardrails ensuring AI outputs adhere to expected schema, bias limits, and factual consistency before being published.</td>
+</tr>
+<tr>
+<td><strong>Agent Orchestrator</strong></td>
+<td>Coordinates specialized AI agents (e.g., risk summarizer, waiver validator, or privacy auditor) and routes tasks between them.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Responsibilities:</strong></p>
+<ul>
+<li>Perform <strong>context-aware analysis</strong> across structured and unstructured assurance data  </li>
+<li>Generate <strong>natural language summaries</strong> for dashboards and auditors  </li>
+<li>Run <strong>DeepEval or equivalent frameworks</strong> to evaluate AI-generated outputs for accuracy and safety  </li>
+<li>Contribute <strong>derived metrics</strong> (e.g., hallucination rate, bias delta, model drift) to Metrics and Visualization layers  </li>
+</ul>
+<p><strong>Output:</strong> AI-augmented reasoning traces and structured evidence summaries, stored in the OCI registry and linked to Assurance Chatbot.</p>
+<hr />
+<h3 id="13-assurance-chatbot">13. Assurance Chatbot<a class="headerlink" href="#13-assurance-chatbot" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Human–machine interface that allows engineers, auditors, and stakeholders to query assurance evidence conversationally.</p>
+<p><strong>Key Functions:</strong></p>
+<ul>
+<li><strong>Interactive Querying:</strong> Retrieve artifacts and metrics via natural language (e.g., “Show all privacy waivers approved in Q4”).  </li>
+<li><strong>Context-Aware Assistance:</strong> Uses retrievers and fusion logic from the AI Reasoning layer to explain findings, waivers, or policy outcomes.  </li>
+<li><strong>Provenance-Aware Responses:</strong> All chatbot outputs reference verifiable Evidence URIs (never hallucinated data).  </li>
+<li><strong>Human Feedback Loop:</strong> Allows auditors to flag discrepancies or provide annotations, which become part of the next enrichment cycle.  </li>
+</ul>
+<p><strong>Example Interaction:</strong></p>
+<blockquote>
+<p><strong>User:</strong> “Why was SEC-001 waived for Service X?”<br />
+<strong>Chatbot:</strong> “Waiver approved by seclead@example.com on 2025-11-05, linked to Finding abc123 (CVSS 9.1). Evidence URI: <code>oci://assurance/waivers@sha256:...</code>.”</p>
+</blockquote>
+<p><strong>Backend Integration:</strong></p>
+<ul>
+<li>Pulls from OCI registry, metrics store, and ticket system  </li>
+<li>Uses LLM Chain + Schema/Safety Gates to ensure outputs remain accurate and non-speculative  </li>
+<li>Logs every query and response for audit traceability  </li>
+</ul>
+<hr />
+<h3 id="14-evidence-traceability">14. Evidence &amp; Traceability<a class="headerlink" href="#14-evidence-traceability" title="Permanent link">&para;</a></h3>
+<p>Every step produces signed or attestable evidence.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Evidence Type</th>
+<th>Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scanning</strong></td>
+<td>Raw scanner reports</td>
+<td>Temporary workspace</td>
+</tr>
+<tr>
+<td><strong>Normalization</strong></td>
+<td>Normalized SARIF</td>
+<td>OCI Registry</td>
+</tr>
+<tr>
+<td><strong>Enrichment</strong></td>
+<td>Contextual + Threat JSON</td>
+<td>OCI Registry</td>
+</tr>
+<tr>
+<td><strong>Policy Decision</strong></td>
+<td>Gate results + policy version</td>
+<td>OCI Registry</td>
+</tr>
+<tr>
+<td><strong>HITL</strong></td>
+<td>Approval artifact</td>
+<td>OCI Registry</td>
+</tr>
+<tr>
+<td><strong>Outputs</strong></td>
+<td>Aggregated metrics &amp; dashboards</td>
+<td>Monitoring systems</td>
+</tr>
+</tbody>
+</table>
+<p>All evidence URIs are included in tickets and metrics, ensuring end-to-end traceability.</p>
+<hr />
+<h3 id="15-key-design-principles">15. Key Design Principles<a class="headerlink" href="#15-key-design-principles" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Immutable Evidence</strong></td>
+<td>All artifacts are signed and stored immutably (OCI digests).</td>
+</tr>
+<tr>
+<td><strong>Policy-as-Code</strong></td>
+<td>Rules are versioned, testable, and reviewed like software.</td>
+</tr>
+<tr>
+<td><strong>Human-in-the-Loop</strong></td>
+<td>Humans intervene only where judgment is required.</td>
+</tr>
+<tr>
+<td><strong>Continuous Enrichment</strong></td>
+<td>Findings are dynamically enriched with internal and external context.</td>
+</tr>
+<tr>
+<td><strong>Unified Schema</strong></td>
+<td>SARIF (or equivalent) ensures interoperability across scanners.</td>
+</tr>
+<tr>
+<td><strong>Auditability</strong></td>
+<td>Each decision is traceable from source to signature.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="16-optional-extensions">16. Optional Extensions<a class="headerlink" href="#16-optional-extensions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Integrity Drift Monitor</strong></td>
+<td>Continuously verify that deployed workloads match signed artifacts.</td>
+</tr>
+<tr>
+<td><strong>Privacy Regression Suite</strong></td>
+<td>Run privacy checks before every dataset or model update.</td>
+</tr>
+<tr>
+<td><strong>AI Evaluation Metrics</strong></td>
+<td>Integrate hallucination rate, bias delta, explainability score.</td>
+</tr>
+<tr>
+<td><strong>Continuous Feedback Loop</strong></td>
+<td>Feed metrics back into developer dashboards and risk scoring models.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>This pipeline provides a single source of truth for security, integrity, privacy, and AI assurance.<br />
+It turns what were once siloed checks into a cohesive, auditable, and policy-driven control plane.<br />
+By combining <strong>automation + human oversight + immutable evidence</strong>, this model enables organizations to achieve:</p>
+<ul>
+<li>Continuous compliance  </li>
+<li>Measurable trust  </li>
+<li>Real-time visibility across all assurance dimensions</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="footer.title">
+      
+        <a href="../principles/" title="Principles" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Principles
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../workflows/" title="Workflows" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Workflows
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2025 Martin Harrod.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="../../assets/javascripts/tables.js"></script>
+      
+        <script src="../../assets/javascripts/nav-toggle.js"></script>
+      
+    
+  </body>
+</html>
