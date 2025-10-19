@@ -1,3 +1,7 @@
+on:
+  workflow_dispatch:  # manual only
+
+
 name: Docs
 
 on:
