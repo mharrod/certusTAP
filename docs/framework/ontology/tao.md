@@ -3,7 +3,7 @@
 Trust & Assurance Ontology (TAO)
 **Version:** 0.1  
 **Last Updated:** 2025-10-16  
-**Source:** [tao-ontology.ttl](tao-ontology.ttl)  
+<!-- **Source:** [tao-ontology.ttl](tao-ontology.ttl)   -->
 **Namespace:** `https://certus.tap/ontology/tao#`  
 
 ---
