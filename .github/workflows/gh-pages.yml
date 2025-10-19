@@ -1,16 +1,23 @@
-name: Publish docs (MkDocs)
+name: Publish docs (MkDocs → GitHub Pages)
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]          # change if your default branch differs
   workflow_dispatch:
 
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+# Required for the official Pages actions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,17 +47,27 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install --no-interaction --no-root
-          # Ensure MkDocs + plugins are present in the Poetry venv (safe no-ops if already installed)
-          poetry run pip install mkdocs mkdocs-material mkdocs-exclude --upgrade --quiet
+          # Ensure MkDocs + plugins are in the SAME Poetry venv (safe no-ops if already present)
+          poetry run pip install --upgrade mkdocs mkdocs-material mkdocs-exclude
 
       - name: Build site
         run: poetry run mkdocs build --strict
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./site
-          force_orphan: true
-          # cname: docs.example.com
+          path: ./site   # MkDocs output dir
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
